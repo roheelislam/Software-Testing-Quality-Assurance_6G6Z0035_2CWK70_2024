@@ -47,7 +47,7 @@ public class Historic extends Site {
         this.remainingMetallic = remainingMetallic;
     }
 
-    private void estimateWasteSplit(double initialWaste) {
+    public void estimateWasteSplit(double initialWaste) {
         this.remainingPaper = initialWaste * 0.5;
 
         if (initialWaste > METALLIC_THRESH) {

@@ -241,7 +241,7 @@ public class Main {
         return generation;
     }
 
-    private static void runScenario(ScenarioConfiguration scenarioConfiguration) {
+    public static void runScenario(ScenarioConfiguration scenarioConfiguration) {
         System.out.println("Running scenario...");
         System.out.println();
 
