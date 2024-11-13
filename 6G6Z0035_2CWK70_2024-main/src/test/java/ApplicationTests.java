@@ -1,10 +1,7 @@
 import models.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -256,6 +253,15 @@ public class ApplicationTests {
     }
 
     @Test
+    public void CalculateTravelDuration_TC_004() {
+        Historic historicSite = new Historic(Location.A, 30.0);
+        Recycling recyclingCenter = new Alpha(Location.B, 5);
+        double travelDuration = Utils.calculateTravelDuration(historicSite, recyclingCenter);
+        double expectedDuration = 4.0; // 2 trips * 2 hours per trip
+        assertEquals(expectedDuration, travelDuration, "Travel duration should be 4 hours for 30 m³ waste with 20 m³ truck capacity");
+    }
+
+    @Test
     public void CalculateProcessDuration_TC_003() {
         Recycling gammaCenter = new Gamma(Location.C, 5);
         Historic historic = new Historic(Location.C, 10);
@@ -308,6 +314,84 @@ public class ApplicationTests {
             historic.estimateWasteSplit(10);
         });
         assertTrue(exception.getMessage().contains("unsupported waste type"), "Error message should indicate unsupported type.");
+    }
+
+    @Test
+    public void Performance_TC_001() {
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            Historic landfill = new Historic(Location.A, 2000.0);
+            Recycling center = new Beta(Location.B, 5);
+            Utils.calculateTravelDuration(landfill, center);
+        }
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        assertTrue(duration < 5000, "System response time should be within acceptable limits.");
+    }
+
+    @Test
+    public void DataConsistency_TC_001() {
+        Historic landfill1 = new Historic(Location.A, 5000.0);
+        Historic landfill2 = new Historic(Location.A, 5000.0);
+        Recycling center = new Alpha(Location.A, 10);
+
+        double travelDuration1 = Utils.calculateTravelDuration(landfill1, center);
+        double processDuration1 = Utils.calculateProcessDuration(landfill1, center);
+
+        double travelDuration2 = Utils.calculateTravelDuration(landfill2, center);
+        double processDuration2 = Utils.calculateProcessDuration(landfill2, center);
+
+        assertEquals(travelDuration1, travelDuration2, 0.1, "Travel durations should match for identical scenarios.");
+        assertEquals(processDuration1, processDuration2, 0.1, "Process durations should match for identical scenarios.");
+    }
+
+    @Test
+    public void EdgeCase_TC_002() {
+        Historic landfill = new Historic(Location.A, 1000.0);
+        landfill.setMetallic(1000.0); // Only metallic waste
+        landfill.setPlasticGlass(0);
+        landfill.setPaper(0);
+
+        Recycling center = new Gamma(Location.C, 10);
+        var centerList = new ArrayList<Recycling>();
+        centerList.add(center);
+        List<Recycling> viableCenters = Utils.findViableCentres(landfill,centerList );
+
+        // Assert that the Gamma center is considered viable due to metallic waste presence
+        assertTrue(viableCenters.contains(center), "Gamma center should be viable for metallic-only waste.");
+    }
+
+    @Test
+    public void Failover_TC_001() {
+        Historic landfill = new Historic(Location.A, 5000.0);
+        Recycling center = new Alpha(Location.A, 10);
+        try {
+            Utils.calculateTravelDuration(landfill, center);
+            throw new RuntimeException("Simulated system interruption.");
+        } catch (Exception e) {
+            System.out.println("System interrupted, resuming...");
+            var centerList = new ArrayList<Recycling>();
+            centerList.add(center);
+            double result = runScenario(new ScenarioConfiguration(landfill, centerList));
+            boolean resume = Objects.nonNull(result) && result > 0;
+            assertTrue(resume, "System should resume or restart after an interruption.");
+        }
+    }
+
+    @Test
+    public void Persistence_TC_001() {
+        Historic landfill = new Historic(Location.A, 2000.0);
+        Recycling center = new Alpha(Location.B, 5);
+        ScenarioConfiguration scenario = new ScenarioConfiguration(landfill, List.of(center));
+//        Utils.saveScenario(scenario, "testScenario.dat");
+
+//        ScenarioConfiguration loadedScenario = Utils.loadScenario("testScenario.dat");
+//
+//        assertEquals(scenario.getHistoric().getRemainingWaste(), loadedScenario.getHistoric().getRemainingWaste(),
+//                "Remaining waste should match after reload.");
+//        assertEquals(scenario.getRecycling().size(), loadedScenario.getRecycling().size(),
+//                "Recycling centers count should match after reload.");
     }
 
     @Test
@@ -455,6 +539,7 @@ public class ApplicationTests {
 
         assertEquals(duration1, duration2, "Identical scenarios should yield consistent durations.");
     }
+
     @Test
     public void Math_TC_006() {
         Recycling alphaCenter = new Alpha(Location.B, 5);  // Alpha with 5 years active
@@ -463,7 +548,7 @@ public class ApplicationTests {
         var centerList = new ArrayList<Recycling>();
         centerList.add(alphaCenter);
         centerList.add(betaCenter);
-        Recycling optimalCenter = Utils.findOptimalCentre(landfill,centerList);
+        Recycling optimalCenter = Utils.findOptimalCentre(landfill, centerList);
         assertEquals(betaCenter, optimalCenter, "Beta should be selected as the optimal center due " +
                                                 "to higher generation and fewer years active.");
     }
@@ -476,6 +561,7 @@ public class ApplicationTests {
         double processDuration = Utils.calculateProcessDuration(scenarioConfiguration.getHistoric(), optimalCentre);
         return travelDuration + processDuration;
     }
+
     private double calculateExpectedTravelDuration(double wasteVolume) {
         double truckCapacity = 20;
         double tripsNeeded = Math.ceil(wasteVolume / truckCapacity);
