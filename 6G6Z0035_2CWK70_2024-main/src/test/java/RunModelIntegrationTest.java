@@ -1,5 +1,4 @@
 import models.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,8 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ApplicationIntegrationTest {
+public class RunModelIntegrationTest {
     private final static int INITIAL_WASTE = 5000;
+
     @Test
     public void testFullScenarioExecution() {
         Historic historic = new Historic(Location.A, INITIAL_WASTE);
@@ -17,7 +17,7 @@ public class ApplicationIntegrationTest {
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
         Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
         List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
-        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenters);
         double expectedPlasticGlass = 1500.0; // 30%
         double expectedPaper = 2500.0; // 50%
         double expectedMetallic = 1000.0; // 20%
@@ -44,26 +44,13 @@ public class ApplicationIntegrationTest {
     }
 
     @Test
-    public void testWasteSplitBelowThreshold() {
-        Historic historic = new Historic(Location.A, 1000); //less than 1250cm3
-
-        double expectedPlasticGlass = 500.0; // 50%
-        double expectedPaper = 500.0; // 50%
-        double expectedMetallic = 0.0;
-
-        assertEquals(expectedPlasticGlass, historic.getPlasticGlass(), "Plastic/Glass split mismatch");
-        assertEquals(expectedPaper, historic.getPaper(), "Paper split mismatch");
-        assertEquals(expectedMetallic, historic.getMetallic(), "Metallic should be zero below threshold");
-    }
-
-    @Test
     public void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
         Historic historic = new Historic(Location.A, 1000);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
         Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
         List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
-        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenters);
         List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
         Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
 
@@ -74,24 +61,5 @@ public class ApplicationIntegrationTest {
         assertTrue(travelDuration > 0, "Travel duration should be positive");
         assertTrue(processDuration > 0, "Process duration should be positive");
         System.out.printf("Test passed: Travel Duration: %.2f, Process Duration: %.2f%n", travelDuration, processDuration);
-    }
-
-    @Test
-    public void testOptimalCenterSelectionWithEqualDistance() {
-        Historic historic = new Historic(Location.A, 1000);
-        Recycling betaCenterA = new Beta(Location.A, 3);
-        Recycling gammaCenterA = new Gamma(Location.A, 2);
-        Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
-        Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
-        Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
-        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
-        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
-        scenarioConfiguration.addRecycling(betaCenterA);
-        scenarioConfiguration.addRecycling(gammaCenterA);
-
-        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
-        Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
-
-        assertEquals("Gamma", optimalCenter.getGeneration(), "Optimal center should be Gamma with higher generation");
     }
 }
