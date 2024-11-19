@@ -9,25 +9,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ApplicationIntegrationTest {
-    private ScenarioConfiguration scenarioConfig;
-    private Historic historic;
-    private Recycling alphaCentre;
-    private Recycling betaCentre;
-    private Recycling gammaCentre;
-
-    @BeforeEach
-    public void setUp() {
-        historic = new Historic(Location.A, 5000.0);
-        alphaCentre = new Alpha(Location.A, 10);
-        betaCentre = new Beta(Location.B, 8);
-        gammaCentre = new Gamma(Location.C, 12);
-
-        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
-        scenarioConfig = new ScenarioConfiguration(historic, recyclingCenters);
-    }
-
+    private final static int INITIAL_WASTE = 5000;
     @Test
     public void testFullScenarioExecution() {
+        Historic historic = new Historic(Location.A, INITIAL_WASTE);
+        Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
+        Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
+        Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
+        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
         double expectedPlasticGlass = 1500.0; // 30%
         double expectedPaper = 2500.0; // 50%
         double expectedMetallic = 1000.0; // 20%
@@ -36,7 +26,7 @@ public class ApplicationIntegrationTest {
         assertEquals(expectedPaper, historic.getPaper(), "Paper split mismatch");
         assertEquals(expectedMetallic, historic.getMetallic(), "Metallic split mismatch");
 
-        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfig.getRecycling());
+        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
         assertTrue(viableCenters.contains(alphaCentre));
         assertTrue(viableCenters.contains(betaCentre));
         assertFalse(viableCenters.contains(gammaCentre));
@@ -55,8 +45,7 @@ public class ApplicationIntegrationTest {
 
     @Test
     public void testWasteSplitBelowThreshold() {
-        historic.setRemainingWaste(1000.0);
-        historic.estimateWasteSplit(1000.0);
+        Historic historic = new Historic(Location.A, 1000); //less than 1250cm3
 
         double expectedPlasticGlass = 500.0; // 50%
         double expectedPaper = 500.0; // 50%
@@ -68,12 +57,18 @@ public class ApplicationIntegrationTest {
     }
 
     @Test
-    public void testCalculateTravelAndProcessDurationWithOptimalCenter() {
-        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfig.getRecycling());
+    public void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
+        Historic historic = new Historic(Location.A, 1000);
+        Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
+        Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
+        Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
+        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
+        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
         Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
 
         assertEquals("Alpha", optimalCenter.getGeneration(), "Optimal center should be Alpha in Zone A");
-        
+
         double travelDuration = Utils.calculateTravelDuration(historic, optimalCenter);
         double processDuration = Utils.calculateProcessDuration(historic, optimalCenter);
         assertTrue(travelDuration > 0, "Travel duration should be positive");
@@ -83,12 +78,18 @@ public class ApplicationIntegrationTest {
 
     @Test
     public void testOptimalCenterSelectionWithEqualDistance() {
+        Historic historic = new Historic(Location.A, 1000);
         Recycling betaCenterA = new Beta(Location.A, 3);
         Recycling gammaCenterA = new Gamma(Location.A, 2);
-        scenarioConfig.addRecycling(betaCenterA);
-        scenarioConfig.addRecycling(gammaCenterA);
+        Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
+        Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
+        Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
+        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic,recyclingCenters);
+        scenarioConfiguration.addRecycling(betaCenterA);
+        scenarioConfiguration.addRecycling(gammaCenterA);
 
-        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfig.getRecycling());
+        List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
         Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
 
         assertEquals("Gamma", optimalCenter.getGeneration(), "Optimal center should be Gamma with higher generation");

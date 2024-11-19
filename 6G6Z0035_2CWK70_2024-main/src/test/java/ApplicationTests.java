@@ -32,7 +32,6 @@ public class ApplicationTests {
     public void EstimateWasteSplit_TC_001() {
         double wasteVolume = 1000;
         Historic historic = new Historic(Location.B, wasteVolume);
-        historic.estimateWasteSplit(wasteVolume);
         assertEquals(500.0, historic.getPlasticGlass(), "Plastic/Glass waste should be 50% of total.");
         assertEquals(500.0, historic.getPaper(), "Paper waste should be 50% of total.");
     }
@@ -41,8 +40,6 @@ public class ApplicationTests {
     public void EstimateWasteSplit_TC_002() {
         double wasteVolume = 5000;
         Historic historic = new Historic(Location.B, wasteVolume);
-
-        historic.estimateWasteSplit(wasteVolume);
         assertEquals(2500.0, historic.getPaper(), "Paper waste should be 50% of total.");
         assertEquals(1500.0, historic.getPlasticGlass(), "Plastic/Glass waste should be 30% of total.");
         assertEquals(1000.0, historic.getMetallic(), "Metallic waste should be 20% of total.");
@@ -141,7 +138,7 @@ public class ApplicationTests {
         double metallicWaste = 2.0;
         double paperWaste = 3.0;
         double wasteVolume = plasticWaste + metallicWaste + paperWaste;
-        Recycling gammaRecyclingCenter = new Gamma(Location.B, 12);
+        Recycling gammaRecyclingCenter = new Gamma(Location.B, 1);
         Historic historic = new Historic(Location.B, wasteVolume);
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, List.of(gammaRecyclingCenter));
         double processDuration = Utils.calculateProcessDuration(scenarioConfiguration.getHistoric(), gammaRecyclingCenter);
@@ -155,7 +152,7 @@ public class ApplicationTests {
         Historic historic = new Historic(Location.B, wasteVolume);
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, List.of(betaRecyclingCenter));
         double processDuration = Utils.calculateProcessDuration(scenarioConfiguration.getHistoric(), betaRecyclingCenter);
-
+        processDuration = Math.round(processDuration * 100.0) / 100.0;
         // Processing duration for Beta center is 1000 / 1.5 = 666.67 hours
         assertTrue(processDuration == 666.67, "Processing duration should be 666.67 hours.");
     }
@@ -222,7 +219,6 @@ public class ApplicationTests {
     public void EstimateWasteSplit_TC_003() {
         double wasteVolume = 1250;
         Historic historic = new Historic(Location.B, wasteVolume);
-        historic.estimateWasteSplit(wasteVolume);
         assertEquals(historic.getPlasticGlass(), 625, "Plastic/Glass waste should be 625 m³ (50%).");
         assertEquals(historic.getPaper(), 625, "Paper waste should be 625 m³ (50%).");
         assertEquals(historic.getMetallic(), 0, "Metallic waste should be 0 m³ (0%).");
@@ -311,7 +307,6 @@ public class ApplicationTests {
         Historic historic = new Historic(Location.A, 100);
 //        historic.setWasteType("Hazardous"); //can't set , Move to defect
         Exception exception = assertThrows(UnsupportedOperationException.class, () -> {
-            historic.estimateWasteSplit(10);
         });
         assertTrue(exception.getMessage().contains("unsupported waste type"), "Error message should indicate unsupported type.");
     }
@@ -398,7 +393,6 @@ public class ApplicationTests {
     public void Validation_TC_001() {
         double initialWaste = 1250;
         Historic historic = new Historic(Location.A, initialWaste);
-        historic.estimateWasteSplit(initialWaste);
         assertEquals(625, historic.getPlasticGlass(), 0.1, "Plastic/Glass waste should be 625 cubic meters.");
         assertEquals(625, historic.getPaper(), 0.1, "Paper waste should be 625 cubic meters.");
     }
@@ -441,7 +435,6 @@ public class ApplicationTests {
 //        historic.setWasteType("Hazardous");  // Unsupported type
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            historic.estimateWasteSplit(2000);
         });
 
         assertEquals("Unsupported waste type: Hazardous", exception.getMessage());
@@ -475,7 +468,6 @@ public class ApplicationTests {
     public void Math_TC_001() {
         double totalWaste = 5000;
         Historic historic = new Historic(Location.A, totalWaste);
-        historic.estimateWasteSplit(totalWaste);
         assertEquals(2500, historic.getPaper(), 0.1, "Paper waste should be 50% of total (2500 m³).");
         assertEquals(1500, historic.getPlasticGlass(), 0.1, "Plastic/Glass waste should be 30% of total (1500 m³).");
         assertEquals(1000, historic.getMetallic(), 0.1, "Metallic waste should be 20% of total (1000 m³).");
