@@ -42,7 +42,7 @@ public class RunModelUnitTests {
         recyclingCenterList.add(center1);
         recyclingCenterList.add(center2);
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenterList);
-        Main.runScenario(scenarioConfiguration);
+        runScenario(scenarioConfiguration);
         assertNotNull(scenarioConfiguration.getHistoric(), "Scenario finished");
     }
 
