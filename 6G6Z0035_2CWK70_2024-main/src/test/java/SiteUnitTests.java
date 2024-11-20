@@ -112,7 +112,7 @@ public class SiteUnitTests {
 
     @Test
     public void Validation_TC_002() {
-        Recycling gammaCenter = new Gamma(Location.B, 8);
+        Recycling gammaCenter = new Gamma(Location.A, 8);
         List<Double> rates = gammaCenter.getRates();
         double plasticVolume = 300;
         double metallicVolume = 400;
@@ -124,6 +124,9 @@ public class SiteUnitTests {
         double expectedPaperDuration = paperVolume / rates.get(2);       // paper
         double expectedTotalDuration = expectedPlasticDuration + expectedMetallicDuration + expectedPaperDuration;
         Historic historic = new Historic(Location.A, totalWaste);
+        historic.setPlasticGlass(plasticVolume);
+        historic.setMetallic(metallicVolume);
+        historic.setPaper(paperVolume);
         double actualTotalDuration = Utils.calculateProcessDuration(historic, gammaCenter);
         assertEquals(expectedTotalDuration, actualTotalDuration, "Gamma center processing duration should match expected calculation.");
     }
@@ -133,9 +136,15 @@ public class SiteUnitTests {
         Recycling alphaCenter = new Alpha(Location.A, 5);
         Recycling betaCenter = new Beta(Location.B, 7);
         Recycling gammaCenter = new Gamma(Location.B, 8);
+
         Historic landfill = new Historic(Location.A, 1000);
+        landfill.setPlasticGlass(1000); // Plastic-only waste
+        landfill.setMetallic(0);        // No metallic waste
+        landfill.setPaper(0);           // No paper waste
         var centerList = new ArrayList<Recycling>();
         centerList.add(alphaCenter);
+        centerList.add(betaCenter);
+        centerList.add(gammaCenter);
         List<Recycling> viableCenters = Utils.findViableCentres(landfill, centerList);
         assertTrue(viableCenters.contains(alphaCenter), "Alpha should be viable for plastic waste.");
         assertTrue(viableCenters.contains(betaCenter), "Beta should be viable for plastic waste.");

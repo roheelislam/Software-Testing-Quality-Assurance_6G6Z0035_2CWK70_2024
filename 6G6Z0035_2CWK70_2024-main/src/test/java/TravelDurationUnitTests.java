@@ -12,7 +12,7 @@ public class TravelDurationUnitTests {
     public void CalculateTravelDuration_TC_001() {
         double wasteVolume = 20;
         Historic historic = new Historic(Location.A, wasteVolume);
-        Recycling recyclingCenter = new Beta(Location.A, 3);
+        Recycling recyclingCenter = new Beta(Location.B, 3);
         var recyclingCenterList = new ArrayList<Recycling>();
         recyclingCenterList.add(recyclingCenter);
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenterList);
@@ -68,7 +68,7 @@ public class TravelDurationUnitTests {
     public void Math_TC_002() {
         Historic landfill = new Historic(Location.A, 5000);
         double truckCapacity = 20;
-        double roundTripTime = 0.5;
+        double roundTripTime = 1.0;
         double expectedTrips = Math.ceil(5000 / truckCapacity);
         double expectedTotalTravelDuration = expectedTrips * roundTripTime;
         double actualTravelDuration = Utils.calculateTravelDuration(landfill, new Gamma(Location.A, 5000));

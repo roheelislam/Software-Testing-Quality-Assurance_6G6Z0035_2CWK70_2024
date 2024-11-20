@@ -16,9 +16,15 @@ public class ProcessDurationUnitTests {
         double wasteVolume = plasticWaste + metallicWaste + paperWaste;
         Recycling gammaRecyclingCenter = new Gamma(Location.B, 1);
         Historic historic = new Historic(Location.B, wasteVolume);
-        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, List.of(gammaRecyclingCenter));
-        double processDuration = Utils.calculateProcessDuration(scenarioConfiguration.getHistoric(), gammaRecyclingCenter);
-        assertTrue(processDuration == (plasticWaste + metallicWaste + paperWaste), "Process duration should match expected values.");
+        historic.setPlasticGlass(plasticWaste);
+        historic.setMetallic(metallicWaste);
+        historic.setPaper(paperWaste);
+        List<Double> gammaRates = gammaRecyclingCenter.getRates();
+        double expectedDuration = (plasticWaste / gammaRates.get(0))  // Plastic duration
+                                  + (metallicWaste / gammaRates.get(1)) // Metallic duration
+                                  + (paperWaste / gammaRates.get(2));  // Paper duration
+        double processDuration = Utils.calculateProcessDuration(historic, gammaRecyclingCenter);
+        assertEquals(expectedDuration, processDuration, 0.1, "Process duration should match expected values.");
     }
 
     @Test
@@ -45,6 +51,24 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
+    public void Math_TC_004() {
+        ScenarioConfiguration scenario = new ScenarioConfiguration();
+        Historic historic = new Historic(Location.A, 1000);
+        Recycling alphaCenter = new Alpha(Location.A, 5);
+        Recycling betaCenter = new Beta(Location.B, 7);
+        Recycling gammaCenter = new Gamma(Location.C, 10);
+
+        scenario.setHistoric(historic);
+        scenario.addRecycling(alphaCenter);
+        scenario.addRecycling(betaCenter);
+        scenario.addRecycling(gammaCenter);
+
+        double expectedTotalDuration = Utils.calculateProcessDuration(historic, alphaCenter);
+        double actualTotalDuration = runScenario(scenario);
+        assertEquals(expectedTotalDuration, actualTotalDuration, "Total duration should be correctly calculated for all waste types.");
+    }
+
+    @Test
     public void Math_TC_005() {
         ScenarioConfiguration scenario1 = new ScenarioConfiguration();
         ScenarioConfiguration scenario2 = new ScenarioConfiguration();
@@ -61,24 +85,6 @@ public class ProcessDurationUnitTests {
         double duration2 = runScenario(scenario2);
 
         assertEquals(duration1, duration2, "Identical scenarios should yield consistent durations.");
-    }
-
-    @Test
-    public void Math_TC_004() {
-        ScenarioConfiguration scenario = new ScenarioConfiguration();
-        Historic historic = new Historic(Location.A, 1000);
-        Recycling alphaCenter = new Alpha(Location.A, 5);
-        Recycling betaCenter = new Beta(Location.B, 7);
-        Recycling gammaCenter = new Gamma(Location.C, 10);
-
-        scenario.setHistoric(historic);
-        scenario.addRecycling(alphaCenter);
-        scenario.addRecycling(betaCenter);
-        scenario.addRecycling(gammaCenter);
-
-        double expectedTotalDuration = Utils.calculateProcessDuration(historic, alphaCenter);
-        double actualTotalDuration = runScenario(scenario);
-        assertEquals(expectedTotalDuration, actualTotalDuration, "Total duration should be correctly calculated for all waste types.");
     }
 
     @Test

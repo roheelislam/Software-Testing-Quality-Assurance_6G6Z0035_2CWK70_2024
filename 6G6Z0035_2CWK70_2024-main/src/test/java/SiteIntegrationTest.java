@@ -15,17 +15,14 @@ public class SiteIntegrationTest {
         Historic historic = new Historic(Location.A, 1000);
         Recycling betaCenterA = new Beta(Location.A, 3);
         Recycling gammaCenterA = new Gamma(Location.A, 2);
-        Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
-        Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
-        Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
-        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
+        List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(betaCenterA, gammaCenterA));
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenters);
-        scenarioConfiguration.addRecycling(betaCenterA);
-        scenarioConfiguration.addRecycling(gammaCenterA);
 
         List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
+
+        // Identify the optimal center
         Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
 
-        assertEquals("Gamma", optimalCenter.getGeneration(), "Optimal center should be Gamma with higher generation");
+        assertEquals("Gamma", optimalCenter.getGeneration(), "Optimal center should be Gamma with higher generation and younger age.");
     }
 }
