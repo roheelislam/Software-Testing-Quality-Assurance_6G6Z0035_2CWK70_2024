@@ -159,7 +159,12 @@ public class AlphaTests {
         List<Double> rates = alphaRecycling.getRates();
 
         // Assert
-        assertAll(() -> assertEquals(1.0, rates.get(0), "The first rate should be 1.0."), () -> assertEquals(1.0, rates.get(1), "The second rate should be 1.0."), () -> assertEquals(1.0, rates.get(2), "The third rate should be 1.0."), () -> assertEquals(3, rates.size(), "The rates list should contain exactly 3 elements."));
+        assertAll(
+                () -> assertEquals(1.0, rates.get(0), "The first rate should be 1.0."),
+                () -> assertEquals(1.0, rates.get(1), "The second rate should be 1.0."),
+                () -> assertEquals(1.0, rates.get(2), "The third rate should be 1.0."),
+                () -> assertEquals(3, rates.size(), "The rates list should contain exactly 3 elements.")
+        );
     }
 
 
