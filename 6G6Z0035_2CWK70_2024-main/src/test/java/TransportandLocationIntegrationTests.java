@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+//Positive Test Case: Calculate Travel Time Between Locations
 public class TransportandLocationIntegrationTests {
     @Test
     void testTransportTravelTimeBetweenLocations() {
@@ -20,6 +20,7 @@ public class TransportandLocationIntegrationTests {
     }
 
 
+    //Negative Test Case: Invalid Travel Time Calculation
     @Test
     void testInvalidTravelTime() {
         // Arrange
@@ -33,6 +34,7 @@ public class TransportandLocationIntegrationTests {
     }
 
 
+    //Edge Case: Transport Across Maximum Locations
     @Test
     void testTransportMaxTravelTime() {
         // Arrange
@@ -44,20 +46,6 @@ public class TransportandLocationIntegrationTests {
         // Assert
         assertEquals(4.0, travelTime, "Travel time between the farthest locations A and C should be 4.0 hours");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
