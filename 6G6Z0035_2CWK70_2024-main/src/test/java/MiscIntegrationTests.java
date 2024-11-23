@@ -92,12 +92,12 @@ public class MiscIntegrationTests {
     // Invalid Recycling Center Generation
     @Test
     void testInvalidRecyclingGeneration() {
-        //Arrange: Attempt to create a recycling center with generation "Zeta".
+        //Arrange & Act: Attempt to create a recycling center with generation "Zeta".
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Recycling(Location.C, 3) {
                 @Override
                 public String getGeneration() {
-                    return "Zeta";
+                    return "InvalidGen";
                 }
 
                 @Override
@@ -107,7 +107,7 @@ public class MiscIntegrationTests {
             };
         });
 
-        //Act & Assert: Expect an exception or fallback behavior.
+        //Assert: Expect an exception or fallback behavior.
         assertNotNull(exception, "Invalid generation should throw an exception.");
     }
 
