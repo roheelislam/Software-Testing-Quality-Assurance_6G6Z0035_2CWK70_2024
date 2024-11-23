@@ -112,7 +112,7 @@ public class MiscIntegrationTests {
     }
 
 
-    //Transport Waste Capacity Exceeded Location A & C
+    //Transport Waste Capacity Exceeded
     @Test
     void testTransportWasteExceedCapacity() {
         //Arrange: Create a Transport object and set waste values exceeding the capacity.
