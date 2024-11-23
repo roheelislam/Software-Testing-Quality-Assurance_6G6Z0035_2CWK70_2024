@@ -14,7 +14,7 @@ public class RecyclingandTransportIntegrationTests {
 
     //Positive Test Case: Validate Recycling Rates
     @Test
-    void testRecyclingRates() { //same as testRatesMatchExpectedOrder om the GammaTests
+    void testRecyclingRates() {
         // Arrange
         Recycling recycling = new Gamma(Location.B, 5);
 

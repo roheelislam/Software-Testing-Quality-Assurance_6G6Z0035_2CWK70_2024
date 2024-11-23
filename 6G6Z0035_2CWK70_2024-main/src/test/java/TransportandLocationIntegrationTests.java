@@ -10,7 +10,7 @@ public class TransportandLocationIntegrationTests {
 
     //Positive Test Case: Calculate Travel Time Between Locations
     @Test
-    void testTransportTravelTimeBetweenLocations() { // same as LocationTests
+    void testTransportTravelTimeBetweenLocations() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -38,7 +38,7 @@ public class TransportandLocationIntegrationTests {
 
     //Edge Case: Transport Across Maximum Locations
     @Test
-    void testTransportMaxTravelTime() { //same as locationTest
+    void testTransportMaxTravelTime() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
 
