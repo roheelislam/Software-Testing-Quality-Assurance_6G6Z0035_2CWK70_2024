@@ -19,7 +19,7 @@ public class MiscIntegrationTests {
 
     //Verify Travel Time Between Locations
     @Test
-    void testTravelTimeBetweenLocations_AB() { //duplicate
+    void testTravelTimeBetweenLocations_AB() {
         //Arrange: Created a Transport object with Location.A as the start and Location.B as the end.
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -33,7 +33,7 @@ public class MiscIntegrationTests {
 
     //Validate Recycling Center Creation (Alpha)
     @Test
-    void testAlphaRecyclingCreation() {  //already in alphaTest
+    void testAlphaRecyclingCreation() {
         //Arrange: Create an Alpha recycling center at Location.A with 5 years of activity.
         Recycling alpha = new Alpha(Location.A, 5);
 
@@ -47,7 +47,7 @@ public class MiscIntegrationTests {
 
     //Calculate Waste Split in Historic Site
     @Test
-    void testHistoricWasteSplit() { //already checked
+    void testHistoricWasteSplit() {
         //Arrange: Create a Historic site at Location.B with 1500 cubic meters of waste.
         Historic historic = new Historic(Location.B, 1500);
 
@@ -61,7 +61,7 @@ public class MiscIntegrationTests {
 
     //Calculate Travel Duration for Valid Configuration
     @Test
-    void testCalculateTravelDuration() { //this is also done
+    void testCalculateTravelDuration() {
         //Arrange: Create a Historic site at Location.A with 50 cubic meters of waste. Add a Beta recycling center at Location.B.
         Historic historic = new Historic(Location.A, 50);
 
@@ -88,13 +88,10 @@ public class MiscIntegrationTests {
         assertNotNull(exception, "Invalid location should throw an exception.");
     }
 
-    /**
-     * @
-     * @implNote {@link RecyclingandTransportIntegrationTests}
-     */
+
     // Invalid Recycling Center Generation
     @Test
-    void testInvalidRecyclingGeneration() {   //defined in the RecyclingandTransportIntegrationTests at 31 line
+    void testInvalidRecyclingGeneration() {
         //Arrange & Act: Attempt to create a recycling center with generation "Zeta".
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Recycling(Location.C, 3) {
@@ -117,8 +114,7 @@ public class MiscIntegrationTests {
 
     //Transport Waste Capacity Exceeded Location A & C
     @Test
-    void testTransportWasteExceedCapacity() { // also on the ModelsAdditionalIntegrationTests
-        // .testTotalWasteInTransport()
+    void testTransportWasteExceedCapacity() {
         //Arrange: Create a Transport object and set waste values exceeding the capacity.
         Transport transport = new Transport(Location.A, Location.C);
         transport.setPaperWaste(15);
@@ -137,7 +133,7 @@ public class MiscIntegrationTests {
 
     //Travel Time Within Same Location
     @Test
-    void testTravelTimeSameLocation() { //also added
+    void testTravelTimeSameLocation() {
         //Arrange: Create a Transport object where the start and end locations are the same.
         Transport transport = new Transport(Location.B, Location.B);
 
@@ -151,7 +147,7 @@ public class MiscIntegrationTests {
 
     //No Recycling Centers Found
     @Test
-    void testNoRecyclingCenters() { // also on the utils test
+    void testNoRecyclingCenters() {
         //Arrange: Pass an empty list of candidate recycling centers to Utils.findViableCentres().
         Historic historic = new Historic(Location.A, 1000);
         List<Recycling> emptyList = new ArrayList<>();
@@ -166,7 +162,7 @@ public class MiscIntegrationTests {
 
     //Waste Below Transport Capacity
     @Test
-    void testWasteBelowTransportCapacity() { //aLSO ON THE UTILS
+    void testWasteBelowTransportCapacity() {
         //Arrange: Create a Historic site with waste below transport capacity.
         Historic historic = new Historic(Location.C, 10); // Below transport capacity
         Recycling alpha = new Alpha(Location.B, 2);
