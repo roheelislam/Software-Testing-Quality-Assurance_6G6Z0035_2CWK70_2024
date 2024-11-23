@@ -111,7 +111,7 @@ class BetaTests {
     }
 
     @Test
-    void testConstructorWithExtremeYearsActive() {
+    void testConstructorWithExtremeYearsActive() {  // same as testConstructorWithLargeYearsActive
         // Arrange
         Beta beta = new Beta(Location.A, Integer.MAX_VALUE);
 
