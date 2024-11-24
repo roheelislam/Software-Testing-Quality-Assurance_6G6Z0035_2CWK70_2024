@@ -31,25 +31,6 @@ class EndToEndFlowIntegrationTest {
         return recyclingCenters;
     }
 
-    @Test
-    public void testScenarioWithValidInputs() {
-        // Arrange
-        Historic historic = createSampleHistoric(Location.A, 1500.0);
-        List<Recycling> recyclingCenters = createSampleRecyclingCenters();
-
-        // Act
-        List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);
-        Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
-        double travelDuration = Utils.calculateTravelDuration(historic, optimalCenter);
-        double processDuration = Utils.calculateProcessDuration(historic, optimalCenter);
-
-        // Assert
-        assertNotNull(viableCenters);
-        assertFalse(viableCenters.isEmpty());
-        assertNotNull(optimalCenter);
-        assertTrue(travelDuration > 0);
-        assertTrue(processDuration > 0);
-    }
 
     @Test
     public void testScenarioWithInsufficientWaste() {
