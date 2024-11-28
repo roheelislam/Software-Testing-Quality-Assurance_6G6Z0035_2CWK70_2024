@@ -163,9 +163,7 @@ class EndToEndFlowIntegrationTest {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling gammaCenter = new Gamma(Location.C, 4); // Gamma center too far
-        List<Recycling> recyclingCenters = List.of(gammaCenter);
-
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
+        List<Recycling> recyclingCenters = new ArrayList<>(List.of(gammaCenter));
 
         // Act
         List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);
@@ -256,9 +254,7 @@ class EndToEndFlowIntegrationTest {
         Historic historic = new Historic(Location.A, 3000);
         Recycling betaCenter = new Beta(Location.B, 50); // Very old center
         Recycling alphaCenter = new Alpha(Location.C, 2);
-        List<Recycling> recyclingCenters = List.of(betaCenter, alphaCenter);
-
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
+        List<Recycling> recyclingCenters = new ArrayList<>(List.of(betaCenter, alphaCenter));
 
         // Act
         Recycling optimalCenter = Utils.findOptimalCentre(historic, recyclingCenters);
