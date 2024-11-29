@@ -2,6 +2,7 @@ import models.*;
 import org.junit.jupiter.api.*;
 import java.io.*;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -144,7 +145,7 @@ class MainTests {
         // Arrange
         Historic historic = new Historic(Location.A, 1000);
         Recycling recycling = new Alpha(Location.B, 5);
-        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, List.of(recycling));
+        ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, new ArrayList<>(List.of(recycling)));
 
         // Act
         invokePrivateMethod("runScenario", scenarioConfiguration);

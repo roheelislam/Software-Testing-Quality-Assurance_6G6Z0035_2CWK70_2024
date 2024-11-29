@@ -102,7 +102,7 @@ class EndToEndFlowIntegrationTest {
     public void testScenarioWithEdgeCaseWasteSplit() {
         // Arrange
         Historic historic = createSampleHistoric(Location.B, 1250.0); // On the metallic threshold
-        List<Recycling> recyclingCenters = createSampleRecyclingCenters();
+        createSampleRecyclingCenters();
 
         // Act
         double metallicWaste = historic.getMetallic();
@@ -138,9 +138,7 @@ class EndToEndFlowIntegrationTest {
         Historic historic = new Historic(Location.A, 2000);
         Recycling alphaCenter = new Alpha(Location.B, 10);
         Recycling betaCenter = new Beta(Location.C, 5);
-        List<Recycling> recyclingCenters = List.of(alphaCenter, betaCenter);
-
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
+        List<Recycling> recyclingCenters = new ArrayList<>(List.of(alphaCenter, betaCenter));
 
         // Act
         List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);
@@ -181,8 +179,6 @@ class EndToEndFlowIntegrationTest {
         Recycling alphaCenter = new Alpha(Location.B, 10);
         List<Recycling> recyclingCenters = List.of(alphaCenter);
 
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
-
         // Act
         double travelDuration = Utils.calculateTravelDuration(historic, alphaCenter);
 
@@ -198,8 +194,6 @@ class EndToEndFlowIntegrationTest {
         Historic historic = new Historic(Location.C, 50000); // Large amount of waste
         Recycling gammaCenter = new Gamma(Location.A, 2);
         List<Recycling> recyclingCenters = List.of(gammaCenter);
-
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
 
         // Act
         double travelDuration = Utils.calculateTravelDuration(historic, gammaCenter);
@@ -236,8 +230,6 @@ class EndToEndFlowIntegrationTest {
         // Arrange
         Historic historic = new Historic(Location.B, 1000);
         List<Recycling> recyclingCenters = new ArrayList<>(); // No centers provided
-
-        ScenarioConfiguration configuration = new ScenarioConfiguration(historic, recyclingCenters);
 
         // Act
         List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);

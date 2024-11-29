@@ -1,11 +1,5 @@
-import models.Location;
-import models.Recycling;
-import models.Alpha;
-import models.Gamma;
-import models.Beta;
-import models.Historic;
+import models.*;
 import org.junit.jupiter.api.Test;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +39,7 @@ public class MainScenarioConfigUtilsIntegrationTests {
         Historic historic = new Historic(Location.A, 1000); // Valid initial waste
         Recycling recycling1 = new Alpha(Location.B, 5); // Valid Recycling center
         Recycling recycling2 = new Beta(Location.C, 3);
-        List<Recycling> recyclingCenters = List.of(recycling1, recycling2);
-        ScenarioConfiguration scenario = new ScenarioConfiguration(historic, recyclingCenters);
+        List<Recycling> recyclingCenters = new ArrayList<>(List.of(recycling1, recycling2));
 
         // Act
         List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);
@@ -56,7 +49,7 @@ public class MainScenarioConfigUtilsIntegrationTests {
 
         // Assert
         assertNotNull(viableCenters, "Viable centers should not be null");
-        assertTrue(viableCenters.size() > 0, "There should be at least one viable center");
+        assertFalse(viableCenters.isEmpty(), "There should be at least one viable center");
         assertNotNull(optimalCenter, "Optimal center should be determined");
         assertTrue(travelDuration > 0, "Travel duration should be greater than 0");
         assertTrue(processDuration > 0, "Process duration should be greater than 0");
@@ -70,7 +63,7 @@ public class MainScenarioConfigUtilsIntegrationTests {
         Recycling alpha = new Alpha(Location.A, 8);
         Recycling beta = new Beta(Location.C, 3);
         Recycling gamma = new Gamma(Location.A, 2); // Gamma expected to be excluded
-        List<Recycling> recyclingCenters = List.of(alpha, beta, gamma);
+        List<Recycling> recyclingCenters = new ArrayList<>(List.of(alpha, beta, gamma));
 
         // Act
         List<Recycling> viableCenters = Utils.findViableCentres(historic, recyclingCenters);
@@ -231,13 +224,19 @@ public class MainScenarioConfigUtilsIntegrationTests {
     void testFindOptimalCenter_NoViableCenters() {
         //Arrange: Use a Historic site with waste but no valid Recycling centers.
         Historic historic = new Historic(Location.A, 2000.0);
-        List<Recycling> recycling = new ArrayList<>();
+        List<Recycling> recyclingCenters = new ArrayList<>(); // Empty list of recycling centers
 
-        //Act: Call Utils.findOptimalCentre().
-        Recycling optimalCenter = Utils.findOptimalCentre(historic, recycling);
+        //Act: Call Utils.findOptimalCentre() and handle potential exceptions.
+        Recycling optimalCenter = null;
+        try {
+            optimalCenter = Utils.findOptimalCentre(historic, recyclingCenters);
+        } catch (Exception e) {
 
+            // Assert: Fail the test if an exception is thrown.
+            fail("Exception occurred while finding optimal center: " + e.getMessage());
+        }
         //Assert: Ensure it handles the empty list gracefully.
-        assertNull(optimalCenter);
+        assertNull(optimalCenter, "Optimal center should be null when no viable centers exist.");
     }
 
 
@@ -257,7 +256,6 @@ public class MainScenarioConfigUtilsIntegrationTests {
                 return List.of(0.0, 0.0, 0.0); // Invalid rates
             }
         };
-        List<Recycling> recyclingCenters = List.of(zeroRateRecycling);
 
         // Act & Assert
         assertThrows(ArithmeticException.class, () -> {
