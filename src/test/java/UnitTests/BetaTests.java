@@ -1,3 +1,5 @@
+package UnitTests;
+
 import models.Beta;
 import models.Location;
 

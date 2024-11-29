@@ -1,3 +1,5 @@
+package UnitTests;
+
 import models.Alpha;
 import models.Location;
 import org.junit.jupiter.api.Test;

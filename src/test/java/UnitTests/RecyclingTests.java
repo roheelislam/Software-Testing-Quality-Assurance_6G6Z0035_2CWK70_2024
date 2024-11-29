@@ -1,3 +1,5 @@
+package UnitTests;
+
 import models.Recycling;
 import models.Location;
 
