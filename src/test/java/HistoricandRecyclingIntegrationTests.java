@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HistoricandRecyclingIntegrationTests {
+class HistoricandRecyclingIntegrationTests {
 
 
     //Positive Test Case: Waste Distribution Across Recycling Centers

@@ -6,10 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AlphaTests {
+class AlphaTests {
 
     @Test
-    public void testConstructorInitialization() {
+    void testConstructorInitialization() {
         // Arrange
         Location expectedLocation = Location.A;
         int expectedYearsActive = 5;
@@ -23,7 +23,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testGetGeneration() {
+    void testGetGeneration() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 3);
 
@@ -35,7 +35,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testGetRates() {
+    void testGetRates() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 10);
 
@@ -48,7 +48,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testLocationConsistency() {
+    void testLocationConsistency() {
         // Arrange
         Location location = Location.B;
         Alpha alphaRecycling = new Alpha(location, 8);
@@ -64,7 +64,7 @@ public class AlphaTests {
     // Edge Cases and Additional Tests
 
     @Test
-    public void testConstructorWithZeroYearsActive() {
+    void testConstructorWithZeroYearsActive() {
         // Arrange
         int yearsActive = 0;
 
@@ -76,7 +76,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testConstructorWithNegativeYearsActive() {
+    void testConstructorWithNegativeYearsActive() {
         // Arrange
         int yearsActive = -5;
 
@@ -88,7 +88,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testRatesImmutability() {
+    void testRatesImmutability() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.A, 5);
 
@@ -100,7 +100,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testLargeYearsActive() {
+    void testLargeYearsActive() {
         // Arrange
         int yearsActive = Integer.MAX_VALUE;
 
@@ -112,7 +112,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testNullLocationInitialization() {
+    void testNullLocationInitialization() {
         // Arrange
         Location location = null;
 
@@ -124,7 +124,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testGetGenerationConsistency() {
+    void testGetGenerationConsistency() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 8);
 
@@ -137,7 +137,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testMultipleInstancesIndependence() {
+    void testMultipleInstancesIndependence() {
         // Arrange
         Alpha alpha1 = new Alpha(Location.A, 5);
         Alpha alpha2 = new Alpha(Location.B, 10);
@@ -151,7 +151,7 @@ public class AlphaTests {
     }
 
     @Test
-    public void testRatesContent() {
+    void testRatesContent() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 5);
 

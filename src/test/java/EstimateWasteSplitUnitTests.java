@@ -18,9 +18,9 @@ public class EstimateWasteSplitUnitTests {
         var recyclingCenterList = new ArrayList<Recycling>();
         recyclingCenterList.add(recyclingCenter);
         // Assert the correct distribution of waste
-        assertEquals(historic.getPaper(), 625, "Paper waste should be 625 m³ (50%).");
-        assertEquals(historic.getPlasticGlass(), 625, "Plastic/Glass waste should be 625 m³ (50%).");
-        assertEquals(historic.getMetallic(), 0, "Metallic waste should be 0 m³ (0%).");
+        assertEquals(625, historic.getPaper(), "Paper waste should be 625 m³ (50%).");
+        assertEquals(625, historic.getPlasticGlass(), "Plastic/Glass waste should be 625 m³ (50%).");
+        assertEquals(0, historic.getMetallic(), "Metallic waste should be 0 m³ (0%).");
     }
 
     @Test
@@ -45,9 +45,9 @@ public class EstimateWasteSplitUnitTests {
     public void EstimateWasteSplit_TC_003() {
         double wasteVolume = 1250;
         Historic historic = new Historic(Location.B, wasteVolume);
-        assertEquals(historic.getPlasticGlass(), 625, "Plastic/Glass waste should be 625 m³ (50%).");
-        assertEquals(historic.getPaper(), 625, "Paper waste should be 625 m³ (50%).");
-        assertEquals(historic.getMetallic(), 0, "Metallic waste should be 0 m³ (0%).");
+        assertEquals(625, historic.getPlasticGlass(), "Plastic/Glass waste should be 625 m³ (50%).");
+        assertEquals(625, historic.getPaper(), "Paper waste should be 625 m³ (50%).");
+        assertEquals(0, historic.getMetallic(), "Metallic waste should be 0 m³ (0%).");
     }
 
     @Test

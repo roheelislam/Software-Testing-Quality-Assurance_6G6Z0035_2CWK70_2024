@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HistoricandTransportIntegrationTests {
+class HistoricandTransportIntegrationTests {
 
 
     //Positive Test Case: Waste Handling in Transport
