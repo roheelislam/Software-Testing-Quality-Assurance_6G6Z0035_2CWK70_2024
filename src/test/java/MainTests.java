@@ -1,10 +1,21 @@
-import models.*;
-import org.junit.jupiter.api.*;
-import java.io.*;
+import models.Alpha;
+import models.Historic;
+import models.Location;
+import models.Recycling;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class MainTests {
 
@@ -35,6 +46,19 @@ class MainTests {
         assertTrue(output.contains("1. Configure/Run Scenario."));
         assertTrue(output.contains("2. About."));
         assertTrue(output.contains("3. Exit."));
+    }
+
+    @Test
+    void testShowOptionsAndInvalidChoice() {
+        // Simulate invalid choice for the main menu
+        String input = "4\n3\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        Main.main(null);
+
+        // Verify the output
+        assertTrue(outputStream.toString().contains("Invalid choice. Please try again."),
+                "Output should indicate invalid choice.");
     }
 
     @Test
@@ -155,6 +179,36 @@ class MainTests {
         assertTrue(output.contains("Scenario successfully completed"), "Scenario should complete successfully");
         assertTrue(output.contains("Time to fill recycling centre:"), "Output should include travel time");
         assertTrue(output.contains("Time to process the waste after delivery:"), "Output should include processing time");
+    }
+
+    @Test
+    void testConfigureScenarioAddHistoricAndRun() throws Exception {
+        // Simulate user input for creating a historic site and running a scenario
+        String input = "1\nA\n1000\n3\n"; // Add Historic, Location A, Waste 1000, Exit
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        // Capture the console output
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        // Use reflection to access the private configureScenario method
+        Method method = Main.class.getDeclaredMethod("configureScenario");
+        method.setAccessible(true); // Make the private method accessible
+
+        try {
+            // Invoke the private method and get the ScenarioConfiguration object
+            ScenarioConfiguration scenario = (ScenarioConfiguration) method.invoke(null);
+
+            // Assertions for Historic creation
+            assertNotNull(scenario.getHistoric(), "Historic should not be null.");
+            assertEquals(Location.A, scenario.getHistoric().getLocation(), "Location should be A.");
+            assertEquals(1000.0, scenario.getHistoric().getRemainingWaste(), "Remaining waste should be 1000.");
+
+            // Assertions for recycling centers
+            assertNull(scenario.getRecycling(), "Recycling list should be null when not created.");
+        } catch (Exception e) {
+            fail("Exception occurred during test execution: " + e.getMessage());
+        }
     }
 
     // Utility Methods
