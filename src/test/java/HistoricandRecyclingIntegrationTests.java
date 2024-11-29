@@ -19,7 +19,7 @@ class HistoricandRecyclingIntegrationTests {
     void testWasteDistributionToRecycling() {
         // Arrange
         Historic historic = new Historic(Location.A, 5000.0);
-        Recycling recycling = new Gamma(Location.B, 10);
+        new Gamma(Location.B, 10);
 
         // Act
         double plasticRate = historic.getPlasticGlass();

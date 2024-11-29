@@ -13,7 +13,7 @@ class HistoricandTransportIntegrationTests {
     @Test
     void testTransportWasteManagement() {
         // Arrange
-        Historic historic = new Historic(Location.A, 100.0);
+        new Historic(Location.A, 100.0);
         Transport transport = new Transport(Location.A, Location.B);
         transport.setPaperWaste(20.0);
 
@@ -29,7 +29,7 @@ class HistoricandTransportIntegrationTests {
     @Test
     void testExceedTransportCapacity() {
         // Arrange
-        Historic historic = new Historic(Location.A, 100.0);
+        new Historic(Location.A, 100.0);
         Transport transport = new Transport(Location.A, Location.B);
         transport.setPaperWaste(25.0); // Exceeds capacity
 

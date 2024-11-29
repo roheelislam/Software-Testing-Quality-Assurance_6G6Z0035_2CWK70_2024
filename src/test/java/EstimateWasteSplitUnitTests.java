@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EstimateWasteSplitUnitTests {
+class EstimateWasteSplitUnitTests {
     @Test
-    public void EdgeCase_TC_001() {
+    void EdgeCase_TC_001() {
         Location zoneA = Location.A;
         double wasteVolume = 1250;
         Historic historic = new Historic(zoneA, wasteVolume);
@@ -24,7 +24,7 @@ public class EstimateWasteSplitUnitTests {
     }
 
     @Test
-    public void EstimateWasteSplit_TC_001() {
+    void EstimateWasteSplit_TC_001() {
         double wasteVolume = 1000;
         Historic historic = new Historic(Location.B, wasteVolume);
         assertEquals(500.0, historic.getPlasticGlass(), "Plastic/Glass waste should be 50% of total.");
@@ -32,7 +32,7 @@ public class EstimateWasteSplitUnitTests {
     }
 
     @Test
-    public void EstimateWasteSplit_TC_002() {
+    void EstimateWasteSplit_TC_002() {
         double wasteVolume = 5000;
         Historic historic = new Historic(Location.B, wasteVolume);
         assertEquals(2500.0, historic.getPaper(), "Paper waste should be 50% of total.");
@@ -42,7 +42,7 @@ public class EstimateWasteSplitUnitTests {
 
 
     @Test
-    public void EstimateWasteSplit_TC_003() {
+    void EstimateWasteSplit_TC_003() {
         double wasteVolume = 1250;
         Historic historic = new Historic(Location.B, wasteVolume);
         assertEquals(625, historic.getPlasticGlass(), "Plastic/Glass waste should be 625 m³ (50%).");
@@ -51,7 +51,7 @@ public class EstimateWasteSplitUnitTests {
     }
 
     @Test
-    public void Validation_TC_001() {
+    void Validation_TC_001() {
         double initialWaste = 1250;
         Historic historic = new Historic(Location.A, initialWaste);
         assertEquals(625, historic.getPlasticGlass(), 0.1, "Plastic/Glass waste should be 625 cubic meters.");
@@ -59,7 +59,7 @@ public class EstimateWasteSplitUnitTests {
     }
 
     @Test
-    public void Math_TC_001() {
+    void Math_TC_001() {
         double totalWaste = 5000;
         Historic historic = new Historic(Location.A, totalWaste);
         assertEquals(2500, historic.getPaper(), 0.1, "Paper waste should be 50% of total (2500 m³).");
