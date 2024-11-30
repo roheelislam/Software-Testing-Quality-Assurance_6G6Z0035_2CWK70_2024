@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SiteUnitTests {
+class SiteUnitTests {
     @Test
-    public void FindViableCentres_TC_001() {
+    void FindViableCentres_TC_001() {
         double wasteVolume = 2000; // Including metallic waste
         Historic historic = new Historic(Location.B, wasteVolume);
         Recycling recyclingCenter1 = new Beta(Location.B, 5);
@@ -25,7 +25,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void FindViableCentres_TC_002() {
+    void FindViableCentres_TC_002() {
         double wasteVolume = 1000; // No metallic waste
         Historic historic = new Historic(Location.B, wasteVolume);
         Recycling recyclingCenter1 = new Alpha(Location.B, 3);
@@ -42,7 +42,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void FindOptimalCentre_TC_001() {
+    void FindOptimalCentre_TC_001() {
         Historic historic = new Historic(Location.A, 3000);
         Recycling centerAlpha = new Alpha(Location.A, 10);
         Recycling centerBeta = new Beta(Location.B, 8);
@@ -60,7 +60,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void FindViableCentres_TC_004() {
+    void FindViableCentres_TC_004() {
         Recycling center1 = new Alpha(Location.B, 5);
         Recycling center2 = new Alpha(Location.B, 5);
         Recycling center3 = new Alpha(Location.B, 5);
@@ -73,7 +73,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void FindOptimalCentre_TC_002() {
+    void FindOptimalCentre_TC_002() {
         Recycling centerWithFewerYears = new Alpha(Location.A, 5);
         Recycling centerWithMoreYears = new Alpha(Location.A, 10);
         var recyclingCenterList = Arrays.asList(centerWithFewerYears, centerWithMoreYears);
@@ -84,7 +84,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void Boundary_TC_001() {
+    void Boundary_TC_001() {
         Historic historic = new Historic(Location.A, 1000);
         Recycling boundaryCenter = new Alpha(Location.B, 3); // Center exactly 3 hours
 
@@ -95,7 +95,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void EdgeCase_TC_002() {
+    void EdgeCase_TC_002() {
         Historic landfill = new Historic(Location.A, 1000.0);
         landfill.setMetallic(1000.0); // Only metallic waste
         landfill.setPlasticGlass(0);
@@ -111,7 +111,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void Validation_TC_002() {
+    void Validation_TC_002() {
         Recycling gammaCenter = new Gamma(Location.A, 8);
         List<Double> rates = gammaCenter.getRates();
         double plasticVolume = 300;
@@ -132,7 +132,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void Validation_TC_003() {
+    void Validation_TC_003() {
         Recycling alphaCenter = new Alpha(Location.A, 5);
         Recycling betaCenter = new Beta(Location.B, 7);
         Recycling gammaCenter = new Gamma(Location.B, 8);
@@ -152,7 +152,7 @@ public class SiteUnitTests {
     }
 
     @Test
-    public void Math_TC_006() {
+    void Math_TC_006() {
         Recycling alphaCenter = new Alpha(Location.B, 5);  // Alpha with 5 years active
         Recycling betaCenter = new Beta(Location.B, 3);    // Beta with 3 years active
         Historic landfill = new Historic(Location.B, 1500);

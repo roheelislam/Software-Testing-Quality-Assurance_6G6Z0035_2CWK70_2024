@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TransportandLocationIntegrationTests {
+class TransportandLocationIntegrationTests {
 
 
     //Positive Test Case: Calculate Travel Time Between Locations

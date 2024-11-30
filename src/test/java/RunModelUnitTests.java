@@ -7,9 +7,9 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RunModelUnitTests {
+class RunModelUnitTests {
     @Test
-    public void RunModel_TC_001() {
+    void RunModel_TC_001() {
         Location zoneB = Location.B;
         double wasteVolume = 2000;
         Historic historic = new Historic(zoneB, wasteVolume);
@@ -31,7 +31,7 @@ public class RunModelUnitTests {
     }
 
     @Test
-    public void RunModel_TC_002() {
+    void RunModel_TC_002() {
         Location zoneA = Location.A;
         double wasteVolume = 3000;
         Historic historic = new Historic(zoneA, wasteVolume);
@@ -47,7 +47,7 @@ public class RunModelUnitTests {
     }
 
     @Test
-    public void Failover_TC_001() {
+    void Failover_TC_001() {
         Historic landfill = new Historic(Location.A, 5000.0);
         Recycling center = new Alpha(Location.A, 10);
         try {
@@ -64,7 +64,7 @@ public class RunModelUnitTests {
     }
 
     @Test
-    public void DataConsistency_TC_001() {
+    void DataConsistency_TC_001() {
         Historic landfill1 = new Historic(Location.A, 5000.0);
         Historic landfill2 = new Historic(Location.A, 5000.0);
         Recycling center = new Alpha(Location.A, 10);

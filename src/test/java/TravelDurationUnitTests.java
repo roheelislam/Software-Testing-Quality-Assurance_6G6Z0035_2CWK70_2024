@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TravelDurationUnitTests {
+class TravelDurationUnitTests {
 //    @Test
 //    public void CalculateTravelDuration_TC_001() {
 //        double wasteVolume = 20;
@@ -22,7 +22,7 @@ public class TravelDurationUnitTests {
 //    }
 
     @Test
-    public void CalculateTravelDuration_TC_002() {
+    void CalculateTravelDuration_TC_002() {
         double wasteVolume = 200;
         Historic historic = new Historic(Location.A, wasteVolume);
         Recycling recyclingCenter = new Beta(Location.B, 5);
@@ -53,7 +53,7 @@ public class TravelDurationUnitTests {
 //    }
 
     @Test
-    public void Validation_TC_006() {
+    void Validation_TC_006() {
         double wasteVolume = 2000;
         Location location = Location.A;
         Historic landfill = new Historic(location, wasteVolume);
@@ -65,7 +65,7 @@ public class TravelDurationUnitTests {
     }
 
     @Test
-    public void Math_TC_002() {
+    void Math_TC_002() {
         Historic landfill = new Historic(Location.A, 5000);
         double truckCapacity = 20;
         double roundTripTime = 1.0;

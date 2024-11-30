@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EstimateWasteSplitIntegrationTests {
+class EstimateWasteSplitIntegrationTests {
     @Test
-    public void testWasteSplitBelowThreshold() {
+    void testWasteSplitBelowThreshold() {
         Historic historic = new Historic(Location.A, 1000); //less than 1250cm3
 
         double expectedPlasticGlass = 500.0; // 50%
@@ -21,7 +21,7 @@ public class EstimateWasteSplitIntegrationTests {
         assertEquals(expectedMetallic, historic.getMetallic(), "Metallic should be zero below threshold");
     }
     @Test
-    public void testExtremeWasteVolume() { // Test Case ID: testExtremeWasteVolume
+    void testExtremeWasteVolume() { // Test Case ID: testExtremeWasteVolume
         Historic historic = new Historic(Location.A, 100000);
         Recycling alphaCenter = new Alpha(Location.A, 10);
         Recycling betaCenter = new Beta(Location.B, 8);
@@ -42,7 +42,7 @@ public class EstimateWasteSplitIntegrationTests {
         assertTrue(processDuration > 0, "Process duration should be positive for large waste volumes.");
     }
     @Test
-    public void testEmptyWasteConfiguration() { // Test Case ID: testEmptyWasteConfiguration
+    void testEmptyWasteConfiguration() { // Test Case ID: testEmptyWasteConfiguration
         Historic historic = new Historic(Location.A, 0);
         Recycling alphaCenter = new Alpha(Location.A, 10);
         Recycling betaCenter = new Beta(Location.B, 8);

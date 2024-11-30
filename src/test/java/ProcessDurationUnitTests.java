@@ -7,9 +7,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ProcessDurationUnitTests {
+class ProcessDurationUnitTests {
     @Test
-    public void CalculateProcessDuration_TC_001() {
+    void CalculateProcessDuration_TC_001() {
         double plasticWaste = 1.5;
         double metallicWaste = 2.0;
         double paperWaste = 3.0;
@@ -28,7 +28,7 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
-    public void CalculateProcessDuration_TC_002() {
+    void CalculateProcessDuration_TC_002() {
         double wasteVolume = 1000;
         Recycling betaRecyclingCenter = new Beta(Location.B, 5);
         Historic historic = new Historic(Location.B, wasteVolume);
@@ -40,7 +40,7 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
-    public void CalculateProcessDuration_TC_003() {
+    void CalculateProcessDuration_TC_003() {
         Recycling gammaCenter = new Gamma(Location.C, 5);
         Historic historic = new Historic(Location.C, 10);
         var recyclingCenterList = Collections.singletonList(gammaCenter);
@@ -51,7 +51,7 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
-    public void Math_TC_004() {
+    void Math_TC_004() {
         ScenarioConfiguration scenario = new ScenarioConfiguration();
         Historic historic = new Historic(Location.A, 1000);
         Recycling alphaCenter = new Alpha(Location.A, 5);
@@ -69,7 +69,7 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
-    public void Math_TC_005() {
+    void Math_TC_005() {
         ScenarioConfiguration scenario1 = new ScenarioConfiguration();
         ScenarioConfiguration scenario2 = new ScenarioConfiguration();
         Historic historic = new Historic(Location.A, 2000);
@@ -88,7 +88,7 @@ public class ProcessDurationUnitTests {
     }
 
     @Test
-    public void Math_TC_003() {
+    void Math_TC_003() {
         Recycling alphaCenter = new Alpha(Location.A, 5);
         double totalWaste = 3000;
         double processingRate = 1;

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RecyclingandTransportIntegrationTests {
+class RecyclingandTransportIntegrationTests {
 
 
     //Positive Test Case: Validate Recycling Rates

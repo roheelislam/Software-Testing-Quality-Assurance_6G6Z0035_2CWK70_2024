@@ -7,11 +7,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SiteIntegrationTest {
+class SiteIntegrationTest {
     private final static int INITIAL_WASTE = 5000;
 
     @Test
-    public void testOptimalCenterSelectionWithEqualDistance() {
+    void testOptimalCenterSelectionWithEqualDistance() {
         Historic historic = new Historic(Location.A, 1000);
         Recycling betaCenterA = new Beta(Location.A, 3);
         Recycling gammaCenterA = new Gamma(Location.A, 2);
@@ -26,7 +26,7 @@ public class SiteIntegrationTest {
         assertEquals("Gamma", optimalCenter.getGeneration(), "Optimal center should be Gamma with higher generation and younger age.");
     }
     @Test
-    public void testNoViableCenters() { // Test Case ID: testNoViableCenters
+    void testNoViableCenters() { // Test Case ID: testNoViableCenters
         Historic historic = new Historic(Location.A, 5000);
         Recycling center1 = new Alpha(Location.B, 10); // 4 hours away
         Recycling center2 = new Beta(Location.C, 15); // 5 hours away
@@ -37,7 +37,7 @@ public class SiteIntegrationTest {
         assertTrue(viableCenters.isEmpty(), "No centers should be viable as all are beyond 3 hours.");
     }
     @Test
-    public void testAllCentersInSameZone() { // Test Case ID: testAllCentersInSameZone
+    void testAllCentersInSameZone() { // Test Case ID: testAllCentersInSameZone
         Historic historic = new Historic(Location.A, 5000);
         Recycling alphaCenter = new Alpha(Location.A, 10);
         Recycling betaCenter = new Beta(Location.A, 8);
@@ -53,7 +53,7 @@ public class SiteIntegrationTest {
         assertEquals("Gamma", optimalCenter.getGeneration(), "Gamma should be selected as the optimal center.");
     }
     @Test
-    public void testIdenticalCenters() { // Test Case ID: testIdenticalCenters
+    void testIdenticalCenters() { // Test Case ID: testIdenticalCenters
         Historic historic = new Historic(Location.A, 5000);
         Recycling gamma1 = new Gamma(Location.A, 5);
         Recycling gamma2 = new Gamma(Location.A, 5);

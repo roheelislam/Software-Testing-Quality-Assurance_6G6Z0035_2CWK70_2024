@@ -7,11 +7,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RunModelIntegrationTest {
+class RunModelIntegrationTest {
     private final static int INITIAL_WASTE = 5000;
 
     @Test
-    public void testFullScenarioExecution() {
+    void testFullScenarioExecution() {
         Historic historic = new Historic(Location.A, INITIAL_WASTE);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
@@ -44,7 +44,7 @@ public class RunModelIntegrationTest {
     }
 
     @Test
-    public void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
+    void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
         Historic historic = new Historic(Location.A, 1000);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
