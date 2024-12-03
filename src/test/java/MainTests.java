@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,10 +144,14 @@ class MainTests {
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(null, List.of());
 
         // Act & Assert
-        Exception exception = assertThrows(NullPointerException.class, () ->
+        Exception exception = assertThrows(InvocationTargetException.class, () ->
                 invokePrivateMethod("runScenario", scenarioConfiguration)
         );
-        assertNotNull(exception, "Scenario run should fail if no historic site is configured");
+        assertNotNull(exception.getCause(), "Exception cause should not be null");
+        assertInstanceOf(NullPointerException.class, exception.getCause(), "Cause of exception should be NullPointerException");
+        assertEquals("Cannot invoke \"models.Historic.getMetallic()\" because \"historic\" is null",
+                exception.getCause().getMessage(),
+                "Exception message should match the expected null pointer message");
     }
 
     // Edge Case Test Cases
