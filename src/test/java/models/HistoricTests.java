@@ -1,7 +1,4 @@
-package UnitTests;
-
-import models.Historic;
-import models.Location;
+package models;
 
 import org.junit.jupiter.api.Test;
 

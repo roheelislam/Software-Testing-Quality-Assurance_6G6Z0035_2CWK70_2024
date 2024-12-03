@@ -1,7 +1,5 @@
-package UnitTests;
+package models;
 
-import models.Alpha;
-import models.Location;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

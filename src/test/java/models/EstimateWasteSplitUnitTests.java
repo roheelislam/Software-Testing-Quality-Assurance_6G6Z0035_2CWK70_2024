@@ -1,9 +1,5 @@
-package UnitTests;
+package models;
 
-import models.Alpha;
-import models.Historic;
-import models.Location;
-import models.Recycling;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,7 +1,4 @@
-package UnitTests;
-
-import models.Location;
-import models.Transport;
+package models;
 
 import org.junit.jupiter.api.Test;
 
