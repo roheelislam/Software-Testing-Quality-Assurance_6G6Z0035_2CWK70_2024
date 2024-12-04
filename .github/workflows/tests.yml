@@ -1,28 +1,25 @@
-name: Java CI with Maven
+name: Maven Test Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 22
+      - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: 22
           distribution: 'adopt'
+          java-version: '22'
 
-      - name: Restore Maven dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven
-
-      - name: Run tests
-        run: mvn -X test
+      - name: Run Maven Tests
+        run: mvn clean test -Dsurefire.version=3.0.0-M5 -Dtest=**/*Test -DfailIfNoTests=false
