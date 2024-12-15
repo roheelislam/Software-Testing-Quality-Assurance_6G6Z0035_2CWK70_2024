@@ -4,6 +4,7 @@ import models.Location;
 import models.Recycling;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -38,6 +39,7 @@ class MainTests {
     // Positive Test Cases
 
     @Test
+    @DisplayName("Display Main Menu Options")
     void testShowOptions() throws Exception {
         // Act
         invokePrivateMethod("showOptions");
@@ -50,6 +52,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Handle Invalid Menu Option")
     void testShowOptionsAndInvalidChoice() {
         // Simulate invalid choice for the main menu
         String input = "4\n3\n";
@@ -63,6 +66,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Display About Information")
     void testShowAbout() throws Exception {
         // Act
         invokePrivateMethod("showAbout");
@@ -74,6 +78,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Create Historic Site with User Input")
     void testCreateHistoric() throws Exception {
         // Arrange
         provideInput("A\n1000\n");
@@ -88,6 +93,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Create Recycling Center with User Input")
     void testCreateRecyclingWithSingleCentre() throws Exception {
         // Arrange
         provideInput("A\n5\nAlpha\nn\n");
@@ -101,6 +107,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Collect Location with Valid Input")
     void testCollectLocationWithValidInput() throws Exception {
         // Arrange
         provideInput("B\n");
@@ -115,6 +122,7 @@ class MainTests {
     // Negative Test Cases
 
     @Test
+    @DisplayName("Handle Invalid Location Input")
     void testInvalidLocationInput() throws Exception {
         // Arrange
         provideInput("X\nA\n");
@@ -127,6 +135,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Handle Invalid Recycling Generation Input")
     void testInvalidGenerationInput() throws Exception {
         // Arrange
         provideInput("InvalidGen\nBeta\n");
@@ -139,6 +148,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Run Scenario Without Historic Site")
     void testRunScenarioWithoutHistoricSite() {
         // Arrange
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(null, List.of());
@@ -157,6 +167,7 @@ class MainTests {
     // Edge Case Test Cases
 
     @Test
+    @DisplayName("Exit Application with User Input")
     void testExitOption() {
         // Arrange
         provideInput("3\n");
@@ -170,6 +181,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Run Scenario with Valid Configuration")
     void testRunScenarioWithValidConfiguration() throws Exception {
         // Arrange
         Historic historic = new Historic(Location.A, 1000);
@@ -187,6 +199,7 @@ class MainTests {
     }
 
     @Test
+    @DisplayName("Configure Scenario and Run with Valid Inputs")
     void testConfigureScenarioAddHistoricAndRun() throws Exception {
         // Simulate user input for creating a historic site and running a scenario
         String input = "1\nA\n1000\n3\n"; // Add Historic, Location A, Waste 1000, Exit

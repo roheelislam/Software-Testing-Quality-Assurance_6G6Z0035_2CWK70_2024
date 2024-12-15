@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EstimateWasteSplitIntegrationTests {
     @Test
+    @DisplayName("Waste Split Below Threshold: Verify splits for less than 1250cm³ waste")
     void testWasteSplitBelowThreshold() {
         Historic historic = new Historic(Location.A, 1000); //less than 1250cm3
 
@@ -21,6 +23,7 @@ class EstimateWasteSplitIntegrationTests {
         assertEquals(expectedMetallic, historic.getMetallic(), "Metallic should be zero below threshold");
     }
     @Test
+    @DisplayName("Extreme Waste Volume: Validate behavior for 100,000cm³ waste")
     void testExtremeWasteVolume() { // Test Case ID: testExtremeWasteVolume
         Historic historic = new Historic(Location.A, 100000);
         Recycling alphaCenter = new Alpha(Location.A, 10);
@@ -42,6 +45,7 @@ class EstimateWasteSplitIntegrationTests {
         assertTrue(processDuration > 0, "Process duration should be positive for large waste volumes.");
     }
     @Test
+    @DisplayName("Empty Waste Configuration: Validate results for zero waste")
     void testEmptyWasteConfiguration() { // Test Case ID: testEmptyWasteConfiguration
         Historic historic = new Historic(Location.A, 0);
         Recycling alphaCenter = new Alpha(Location.A, 10);

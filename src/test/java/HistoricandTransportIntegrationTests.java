@@ -1,6 +1,7 @@
 import models.Location;
 import models.Transport;
 import models.Historic;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -11,6 +12,7 @@ class HistoricandTransportIntegrationTests {
 
     //Positive Test Case: Waste Handling in Transport
     @Test
+    @DisplayName("Positive Case: Validate Waste Handling in Transport")
     void testTransportWasteManagement() {
         // Arrange
         new Historic(Location.A, 100.0);
@@ -27,6 +29,7 @@ class HistoricandTransportIntegrationTests {
 
     //Negative Test Case: Exceed Transport Capacity
     @Test
+    @DisplayName("Negative Case: Exceed Transport Capacity")
     void testExceedTransportCapacity() {
         // Arrange
         new Historic(Location.A, 100.0);

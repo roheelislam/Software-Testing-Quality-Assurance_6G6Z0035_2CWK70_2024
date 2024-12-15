@@ -3,6 +3,7 @@ import models.Recycling;
 import models.Gamma;
 import models.Alpha;
 import models.Historic;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -16,6 +17,7 @@ class HistoricandRecyclingIntegrationTests {
 
     //Positive Test Case: Waste Distribution Across Recycling Centers
     @Test
+    @DisplayName("Positive Case: Validate Waste Distribution to Recycling Centers")
     void testWasteDistributionToRecycling() {
         // Arrange
         Historic historic = new Historic(Location.A, 5000.0);
@@ -32,6 +34,7 @@ class HistoricandRecyclingIntegrationTests {
 
 
     @Test
+    @DisplayName("Negative Case: Assign Non-Viable Recycling Center")
     void testAssignNonViableCenter() {
         // Arrange
         Historic historic = new Historic(Location.A, 500.0); // No metallic waste

@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Scenario Configuration with Valid Inputs
     @Test
+    @DisplayName("Scenario Configuration: Valid Inputs")
     void testScenarioConfiguration_ValidInputs() {
         //Arrange:
         //Create a valid Historic site with initial waste (3000 meters cubed) at Location.A.
@@ -34,6 +36,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
 
     @Test
+    @DisplayName("Run Scenario: Valid Inputs")
     void testRunScenarioWithValidInputs() {
         // Arrange
         Historic historic = new Historic(Location.A, 1000); // Valid initial waste
@@ -57,6 +60,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
 
     @Test
+    @DisplayName("Scenario with Multiple Generations")
     void testScenarioWithMultipleGenerations() {
         // Arrange
         Historic historic = new Historic(Location.B, 2000); // Above metallic threshold
@@ -75,6 +79,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Running a Scenario with Viable Recycling Centers
     @Test
+    @DisplayName("Run Scenario: Viable Recycling Centers")
     void testRunScenario_WithValidViableCenters() {
         //Arrange:
         //Set up a Historic site with enough waste for transportation.
@@ -101,6 +106,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Travel and Process Duration Calculations
     @Test
+    @DisplayName("Travel and Process Duration Calculations")
     void testCalculateDurations_ValidInputs() {
         //Arrange: Set up a valid Historic site and an Alpha recycling center.
         Historic historic = new Historic(Location.A, 2000.0);
@@ -121,6 +127,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Scenario Configuration with Null Historic Site
     @Test
+    @DisplayName("Scenario Configuration: Null Historic Site")
     void testScenarioConfiguration_NullHistoric() {
         //Arrange: Use a null Historic site.
         List<Recycling> recycling = List.of(new Alpha(Location.B, 5));
@@ -134,6 +141,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
 
     @Test
+    @DisplayName("Scenario Configuration: Empty Inputs")
     void testScenarioConfigurationWithEmptyInputs() {
         // Arrange
         ScenarioConfiguration scenario = new ScenarioConfiguration();
@@ -146,6 +154,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Find Viable Centers with Empty List
     @Test
+    @DisplayName("Find Viable Centers: Empty List")
     void testFindViableCenters_EmptyList() {
         //Arrange: Use a Historic site but an empty list of Recycling centers.
         Historic historic = new Historic(Location.A, 1000.0);
@@ -161,6 +170,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Travel Duration with Insufficient Waste
     @Test
+    @DisplayName("Travel Duration: Insufficient Waste")
     void testCalculateTravelDuration_InsufficientWaste() {
         //Arrange: Create a Historic site with waste less than transport capacity.
         Historic historic = new Historic(Location.A, 10.0);
@@ -175,6 +185,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
 
     @Test
+    @DisplayName("Travel Duration: Insufficient Transport Capacity")
     void testTravelDurationWithInsufficientTransportCapacity() {
         // Arrange
         Historic historic = new Historic(Location.A, 10); // Below transport capacity
@@ -189,6 +200,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
 
     @Test
+    @DisplayName("Run Scenario: Invalid Waste Distribution")
     void testRunScenarioWithInvalidWasteDistribution() {
         // Arrange
         Historic historic = new Historic(Location.A, -100); // Invalid negative waste
@@ -221,6 +233,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Optimal Center with No Viable Centers
     @Test
+    @DisplayName("Optimal Center: No Viable Centers")
     void testFindOptimalCenter_NoViableCenters() {
         //Arrange: Use a Historic site with waste but no valid Recycling centers.
         Historic historic = new Historic(Location.A, 2000.0);
@@ -242,6 +255,7 @@ class MainScenarioConfigUtilsIntegrationTests {
 
     //Test Process Duration with Zero Rates
     @Test
+    @DisplayName("Process Duration: Edge Case with Zero Rates")
     void testProcessDurationEdgeCaseWithZeroRates() {
         // Arrange
         Historic historic = new Historic(Location.A, 500);
