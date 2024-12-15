@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ class UtilsIntegrationTests {
 
     // Positive Test Case: Valid generations
     @Test
+    @DisplayName("Find Highest Generations: Valid Input")
     void testFindHighestGenerations_ValidInput() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
@@ -27,6 +29,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Empty list
     @Test
+    @DisplayName("Find Highest Generations: Empty List")
     void testFindHighestGenerations_EmptyList() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
@@ -40,6 +43,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Null input
     @Test
+    @DisplayName("Find Highest Generations: Null Input")
     void testFindHighestGenerations_NullInput() {
         // Arrange
         List<Recycling> candidateCentres = null;
@@ -54,6 +58,7 @@ class UtilsIntegrationTests {
 
     // Positive Test Case: Valid years active
     @Test
+    @DisplayName("Find Least Years Active: Valid Input")
     void testFindLeastYearsActive_ValidInput() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
@@ -71,6 +76,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Empty list
     @Test
+    @DisplayName("Find Least Years Active: Empty List")
     void testFindLeastYearsActive_EmptyList() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
@@ -84,6 +90,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Null input
     @Test
+    @DisplayName("Find Least Years Active: Null Input")
     void testFindLeastYearsActive_NullInput() {
         // Arrange
         List<Recycling> candidateCentres = null;
@@ -98,6 +105,7 @@ class UtilsIntegrationTests {
 
     // Positive Test Case: Valid transport simulation
     @Test
+    @DisplayName("Calculate Travel Duration: Valid Input")
     void testCalculateTravelDuration_ValidInput() {
         // Arrange
         Historic historic = new Historic(Location.A, 50.0); // Waste > TRANSPORT_CAPACITY
@@ -112,6 +120,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Waste below transport capacity
     @Test
+    @DisplayName("Calculate Travel Duration: Insufficient Waste")
     void testCalculateTravelDuration_InsufficientWaste() {
         // Arrange
         Historic historic = new Historic(Location.A, 10.0); // Waste < TRANSPORT_CAPACITY
@@ -126,6 +135,7 @@ class UtilsIntegrationTests {
 
     // Negative Test Case: Null inputs
     @Test
+    @DisplayName("Calculate Travel Duration: Null Inputs")
     void testCalculateTravelDuration_NullInputs() {
         // Arrange
         Historic historic = null;

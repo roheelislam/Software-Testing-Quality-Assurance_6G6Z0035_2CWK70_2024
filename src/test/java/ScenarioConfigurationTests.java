@@ -3,6 +3,7 @@ import models.Location;
 import models.Recycling;
 import models.Beta;
 import models.Alpha;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ class ScenarioConfigurationTests {
     // Positive Test Cases
 
     @Test
+    @DisplayName("Default Constructor: Validate Initialization")
     void testDefaultConstructor() {
         // Arrange & Act
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -26,6 +28,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Parameterized Constructor: Validate Initialization with Inputs")
     void testParameterizedConstructor() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
@@ -43,6 +46,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Set Historic Site: Validate Assignment")
     void testSetHistoric() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -56,6 +60,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Add Recycling Center: Single Item")
     void testAddRecycling() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -70,6 +75,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Add Multiple Recycling Centers: Validate List Updates")
     void testAddMultipleRecyclingItems() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -89,6 +95,7 @@ class ScenarioConfigurationTests {
     // Negative Test Cases
 
     @Test
+    @DisplayName("Add Null Recycling Center: Validate Behavior")
     void testAddNullRecycling() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -102,6 +109,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Set Null Historic Site: Validate Behavior")
     void testSetNullHistoric() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
@@ -114,6 +122,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Parameterized Constructor with Null Recycling List")
     void testNullRecyclingListInParameterizedConstructor() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -127,6 +136,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Modify Recycling List After Initialization")
     void testRecyclingModificationAfterInitialization() {
         // Arrange
         Historic historic = new Historic(Location.B, 1000);
@@ -145,6 +155,7 @@ class ScenarioConfigurationTests {
     // Edge Case Test Cases
 
     @Test
+    @DisplayName("Recycling List with Empty Initialization")
     void testRecyclingWithEmptyList() {
         // Arrange
         Historic historic = new Historic(Location.A, 500);
@@ -155,6 +166,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Add Recycling to Null Recycling List")
     void testAddRecyclingToNullRecyclingList() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
@@ -167,6 +179,7 @@ class ScenarioConfigurationTests {
     }
 
     @Test
+    @DisplayName("Empty Constructor with Null Additions")
     void testEmptyConstructorWithNullAdditions() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();

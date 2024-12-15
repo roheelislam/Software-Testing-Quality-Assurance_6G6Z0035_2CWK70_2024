@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,14 +23,18 @@ class TravelDurationUnitTests {
 //    }
 
     @Test
+    @DisplayName("Calculate Travel Duration: Multiple Trips for Beta Center")
     void CalculateTravelDuration_TC_002() {
+        // Arrange
         double wasteVolume = 200;
         Historic historic = new Historic(Location.A, wasteVolume);
         Recycling recyclingCenter = new Beta(Location.B, 5);
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, List.of(recyclingCenter));
+        // Act
         double travelTime = Utils.calculateTravelDuration(scenarioConfiguration.getHistoric(), recyclingCenter);
         int trips = (int) Math.ceil(wasteVolume / 20.0);
         double totalTravelDuration = trips * travelTime;
+        // Assert
         assertTrue(totalTravelDuration == 20, "Total travel duration should be 20 hours.");
     }
 
@@ -53,25 +58,33 @@ class TravelDurationUnitTests {
 //    }
 
     @Test
+    @DisplayName("Validation: Travel Duration for Alpha Center in Same Zone")
     void Validation_TC_006() {
+        // Arrange
         double wasteVolume = 2000;
         Location location = Location.A;
         Historic landfill = new Historic(location, wasteVolume);
         Recycling center = new Alpha(location, 5);
         double expectedTravelDuration = calculateExpectedTravelDuration(wasteVolume);
+        // Act
         double actualTravelDuration = Utils.calculateTravelDuration(landfill, center);
+        // Assert
         assertEquals(expectedTravelDuration, actualTravelDuration, 0.1, "Travel duration should be " +
                                                                         "1 hour per round trip within the same zone.");
     }
 
     @Test
+    @DisplayName("Math Validation: Travel Duration for Gamma Center with 5000m³ Waste")
     void Math_TC_002() {
+        // Arrange
         Historic landfill = new Historic(Location.A, 5000);
         double truckCapacity = 20;
         double roundTripTime = 1.0;
         double expectedTrips = Math.ceil(5000 / truckCapacity);
         double expectedTotalTravelDuration = expectedTrips * roundTripTime;
+        // Act
         double actualTravelDuration = Utils.calculateTravelDuration(landfill, new Gamma(Location.A, 5000));
+        // Assert
         assertEquals(expectedTotalTravelDuration, actualTravelDuration, 0.1, "Total travel duration should match expected calculation.");
     }
 

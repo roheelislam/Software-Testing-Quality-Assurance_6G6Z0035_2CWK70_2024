@@ -5,6 +5,7 @@ import models.Gamma;
 import models.Beta;
 import models.Historic;
 import models.Transport;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -19,6 +20,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Calculate Total Waste in Transport
     @Test
+    @DisplayName("Calculate Total Waste in Transport")
     void testTotalWasteInTransport() {
         //Arrange: Create a Transport with paperWaste=10, plasticGlassWaste=5, and metallicWaste=5.
         Transport transport = new Transport(Location.A, Location.B);
@@ -36,6 +38,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Verify Interaction Between Historic and Transport
     @Test
+    @DisplayName("Verify Interaction Between Historic and Transport")
     void testHistoricWasteWithTransport() {
         //Arrange: Create a Historic site with 1500 cubic meters of waste and a Transport object.
         Historic historic = new Historic(Location.A, 1500.0);
@@ -55,6 +58,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Verify Recycling Generation and Rates
     @Test
+    @DisplayName("Verify Recycling Generation and Rates")
     void testRecyclingGenerationAndRates() {
         //Arrange: Create instances of Alpha, Beta, and Gamma recycling centers.
         Recycling alpha = new Alpha(Location.A, 10);
@@ -76,6 +80,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Validate Location Travel Times
     @Test
+    @DisplayName("Validate Travel Times Between Locations")
     void testLocationTravelTimes() {
         //Arrange: Create Transport objects between various Location pairs.
         //Act: Retrieve travel times.
@@ -89,6 +94,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Validate Waste Processing Duration
     @Test
+    @DisplayName("Validate Waste Processing Duration")
     void testWasteProcessingDuration() {
         //Arrange: Create a Historic site and a Gamma recycling center.
         Historic historic = new Historic(Location.A, 1500.0);
@@ -107,6 +113,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Zero Waste Transport
     @Test
+    @DisplayName("Zero Waste in Transport")
     void testZeroWasteTransport() {
         //Arrange: Create a Transport with no waste.
         Transport transport = new Transport(Location.A, Location.B);
@@ -121,6 +128,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Waste Distribution Below Threshold
     @Test
+    @DisplayName("Waste Distribution Below Threshold")
     void testHistoricWasteSplitBelowThreshold() {
         //Arrange: Create Historic with initial waste of 1000 cubic meters.
         Historic historic = new Historic(Location.A, 1000.0);
@@ -139,6 +147,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Invalid Waste Distribution for Historic
     @Test
+    @DisplayName("Historic Site with Zero Waste")
     void testHistoricZeroWaste() {
         //Arrange: Create a Historic site with zero waste.
         Historic historic = new Historic(Location.A, 0.0);
@@ -157,6 +166,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Exceeding Waste Capacity in Transport
     @Test
+    @DisplayName("Exceeding Transport Capacity")
     void testTransportExceedingCapacity() {
         //Arrange: Create a Transport with waste exceeding the transport capacity.
         Transport transport = new Transport(Location.A, Location.B);
@@ -176,6 +186,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Maximum Waste Capacity in Transport Location A & B
     @Test
+    @DisplayName("Maximum Transport Capacity")
     void testTransportMaxCapacity() {
         //Arrange: Create a Transport with waste set to capacity (20 cubic meters).
         Transport transport = new Transport(Location.A, Location.B);
@@ -193,6 +204,7 @@ class ModelsAdditionalIntegrationTests {
 
     //Negative Waste in Transport
     @Test
+    @DisplayName("Negative Waste in Transport")
     void testNegativeWasteInTransport() {
         //Arrange: Create a Transport with negative waste values.
         Transport transport = new Transport(Location.A, Location.B);

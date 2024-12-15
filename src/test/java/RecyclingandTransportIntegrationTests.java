@@ -2,6 +2,7 @@ import models.Location;
 import models.Recycling;
 import models.Gamma;
 import models.Alpha;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -14,6 +15,7 @@ class RecyclingandTransportIntegrationTests {
 
     //Positive Test Case: Validate Recycling Rates
     @Test
+    @DisplayName("Validate Recycling Rates for Gamma Center")
     void testRecyclingRates() {
         // Arrange
         Recycling recycling = new Gamma(Location.B, 5);
@@ -28,6 +30,7 @@ class RecyclingandTransportIntegrationTests {
 
     //Negative Test Case: Invalid Recycling Center Generation
     @Test
+    @DisplayName("Validate Alpha Recycling Center Does Not Have Beta Generation")
     void testInvalidRecyclingGeneration() {
         // Arrange
         Recycling recycling = new Alpha(Location.A, 5);

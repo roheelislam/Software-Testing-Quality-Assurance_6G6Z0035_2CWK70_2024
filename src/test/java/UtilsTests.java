@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ class UtilsTests {
     // Positive Test Cases
 
     @Test
+    @DisplayName("Find Viable Centres: With Metallic Waste")
     void testFindViableCentresWithMetallicWaste() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -28,6 +30,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Find Viable Centres: Without Metallic Waste")
     void testFindViableCentresWithoutMetallicWaste() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -47,6 +50,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Find Optimal Centre: Valid Centres")
     void testFindOptimalCentre() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
@@ -63,6 +67,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Calculate Travel Duration: Valid Centre")
     void testCalculateTravelDuration() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -76,6 +81,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Calculate Process Duration: Valid Centre")
     void testCalculateProcessDuration() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -91,6 +97,7 @@ class UtilsTests {
     // Negative Test Cases
 
     @Test
+    @DisplayName("Find Viable Centres: Empty List")
     void testFindViableCentresWithEmptyList() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
@@ -104,6 +111,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Find Optimal Centre: Empty List")
     void testFindOptimalCentreWithEmptyList() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -117,6 +125,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Calculate Travel Duration: Insufficient Waste")
     void testCalculateTravelDurationWithInsufficientWaste() {
         // Arrange
         Historic historic = new Historic(Location.A, 15); // Less than transport capacity
@@ -130,6 +139,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Calculate Process Duration: Zero Rates")
     void testCalculateProcessDurationWithZeroRates() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -155,6 +165,7 @@ class UtilsTests {
     // Edge Case Test Cases
 
     @Test
+    @DisplayName("Find Viable Centres: Boundary Travel Time")
     void testFindViableCentresWithBoundaryTravelTime() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
@@ -171,6 +182,7 @@ class UtilsTests {
     }
 
     @Test
+    @DisplayName("Find Highest Generations: Mixed Generations")
     void testFindHighestGenerationsWithMixedGenerations() {
         // Arrange
         List<Recycling> centres = List.of(

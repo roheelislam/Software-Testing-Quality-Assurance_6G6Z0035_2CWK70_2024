@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,7 +12,9 @@ class RunModelIntegrationTest {
     private final static int INITIAL_WASTE = 5000;
 
     @Test
+    @DisplayName("Full Scenario Execution: Validate Waste Split and Optimal Center")
     void testFullScenarioExecution() {
+        // Arrange
         Historic historic = new Historic(Location.A, INITIAL_WASTE);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
@@ -26,14 +29,17 @@ class RunModelIntegrationTest {
         assertEquals(expectedPaper, historic.getPaper(), "Paper split mismatch");
         assertEquals(expectedMetallic, historic.getMetallic(), "Metallic split mismatch");
 
+        // Act & Assert Viable Centers
         List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
         assertTrue(viableCenters.contains(alphaCentre));
         assertTrue(viableCenters.contains(betaCentre));
         assertFalse(viableCenters.contains(gammaCentre));
 
+        // Act & Assert Optimal Center
         Recycling optimalCenter = Utils.findOptimalCentre(historic, viableCenters);
         assertEquals("Alpha", optimalCenter.getGeneration(), "Optimal center should be Alpha as it's closest");
 
+        // Act & Assert Travel and Process Durations
         double travelDuration = Utils.calculateTravelDuration(historic, optimalCenter);
         double processDuration = Utils.calculateProcessDuration(historic, optimalCenter);
 
@@ -44,11 +50,14 @@ class RunModelIntegrationTest {
     }
 
     @Test
+    @DisplayName("Calculate Travel and Process Duration with Optimal Center")
     void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
+        // Arrange
         Historic historic = new Historic(Location.A, 1000);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
         Beta betaCentre = new Beta(Location.B, INITIAL_WASTE);
         Gamma gammaCentre = new Gamma(Location.C, INITIAL_WASTE);
+        // Act & Assert Viable and Optimal Centers
         List<Recycling> recyclingCenters = new ArrayList<>(Arrays.asList(alphaCentre, betaCentre, gammaCentre));
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(historic, recyclingCenters);
         List<Recycling> viableCenters = Utils.findViableCentres(historic, scenarioConfiguration.getRecycling());
@@ -56,6 +65,7 @@ class RunModelIntegrationTest {
 
         assertEquals("Alpha", optimalCenter.getGeneration(), "Optimal center should be Alpha in Zone A");
 
+        // Act & Assert Travel and Process Durations
         double travelDuration = Utils.calculateTravelDuration(historic, optimalCenter);
         double processDuration = Utils.calculateProcessDuration(historic, optimalCenter);
         assertTrue(travelDuration > 0, "Travel duration should be positive");

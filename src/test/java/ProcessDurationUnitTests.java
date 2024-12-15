@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ProcessDurationUnitTests {
     @Test
+    @DisplayName("Process Duration: Validate Gamma Recycling Center with Specific Rates")
     void CalculateProcessDuration_TC_001() {
         double plasticWaste = 1.5;
         double metallicWaste = 2.0;
@@ -28,6 +30,7 @@ class ProcessDurationUnitTests {
     }
 
     @Test
+    @DisplayName("Process Duration: Validate Beta Recycling Center with 1000 m³ Waste")
     void CalculateProcessDuration_TC_002() {
         double wasteVolume = 1000;
         Recycling betaRecyclingCenter = new Beta(Location.B, 5);
@@ -40,6 +43,7 @@ class ProcessDurationUnitTests {
     }
 
     @Test
+    @DisplayName("Process Duration: Validate Metallic Waste in Gamma Center")
     void CalculateProcessDuration_TC_003() {
         Recycling gammaCenter = new Gamma(Location.C, 5);
         Historic historic = new Historic(Location.C, 10);
@@ -51,6 +55,7 @@ class ProcessDurationUnitTests {
     }
 
     @Test
+    @DisplayName("Process Duration: Validate Total Duration for All Waste Types")
     void Math_TC_004() {
         ScenarioConfiguration scenario = new ScenarioConfiguration();
         Historic historic = new Historic(Location.A, 1000);
@@ -69,6 +74,7 @@ class ProcessDurationUnitTests {
     }
 
     @Test
+    @DisplayName("Process Duration: Validate Consistency Across Identical Scenarios")
     void Math_TC_005() {
         ScenarioConfiguration scenario1 = new ScenarioConfiguration();
         ScenarioConfiguration scenario2 = new ScenarioConfiguration();
@@ -88,6 +94,7 @@ class ProcessDurationUnitTests {
     }
 
     @Test
+    @DisplayName("Process Duration: Validate Calculation for Alpha Recycling Center")
     void Math_TC_003() {
         Recycling alphaCenter = new Alpha(Location.A, 5);
         double totalWaste = 3000;
