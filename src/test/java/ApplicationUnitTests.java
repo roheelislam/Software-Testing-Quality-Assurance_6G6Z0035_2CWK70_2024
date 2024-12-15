@@ -1,4 +1,5 @@
 import models.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,6 +10,7 @@ class ApplicationUnitTests {
 
 
     @Test
+    @DisplayName("Error Handling: Unsupported Waste Type")
     void ErrorHandling_TC_001() {
         double initialWaste = 10;
         Historic historic = new Historic(Location.A, 100);
@@ -19,6 +21,7 @@ class ApplicationUnitTests {
     }
 
     @Test
+    @DisplayName("Performance: System Response Time Within 5 Seconds")
     void Performance_TC_001() {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
@@ -33,6 +36,7 @@ class ApplicationUnitTests {
     }
 
     @Test
+    @DisplayName("Persistence: Validate Save and Reload of Scenario")
     void Persistence_TC_001() {
         Historic landfill = new Historic(Location.A, 2000.0);
         Recycling center = new Alpha(Location.B, 5);
@@ -48,6 +52,7 @@ class ApplicationUnitTests {
     }
 
     @Test
+    @DisplayName("Validation: Unsupported Waste Type Throws Exception")
     void Validation_TC_004() {
         new Historic(Location.A, 2000);
 //        historic.setWasteType("Hazardous");  // Unsupported type
@@ -59,6 +64,7 @@ class ApplicationUnitTests {
     }
 
     @Test
+    @DisplayName("Validation: Finalize Scenario Requires Complete Data")
     void Validation_TC_005() {
         ScenarioConfiguration scenarioConfig = new ScenarioConfiguration();
         Historic historic = new Historic(Location.A, 1500);
@@ -70,4 +76,3 @@ class ApplicationUnitTests {
         assertEquals("Scenario cannot be finalized without complete data.", exception.getMessage());
     }
 }
-
