@@ -21,5 +21,8 @@ jobs:
           distribution: 'zulu'
           java-version: '22'
 
+      - name: Run Maven Test Compile
+        run: mvn test-compile
+
       - name: Run Maven Tests
-        run: mvn clean test -Dsurefire.version=3.0.0-M5 -DfailIfNoTests=false
+        run: mvn clean test -DfailIfNoTests=false
