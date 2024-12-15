@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,6 +34,7 @@ class EndToEndFlowIntegrationTest {
 
 
     @Test
+    @DisplayName("Scenario with Insufficient Waste")
     void testScenarioWithInsufficientWaste() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 10.0); // Insufficient waste
@@ -59,6 +61,7 @@ class EndToEndFlowIntegrationTest {
     }
 
     @Test
+    @DisplayName("Scenario with No Metallic Waste")
     void testScenarioWithNoMetallicWaste() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 1200.0); // No metallic waste
@@ -79,6 +82,7 @@ class EndToEndFlowIntegrationTest {
     }
 
     @Test
+    @DisplayName("Scenario with Excessive Travel Time")
     void testScenarioWithExcessiveTravelTime() {
         // Arrange
         Historic historic = createSampleHistoric(Location.C, 2000.0); // Far location
@@ -99,6 +103,7 @@ class EndToEndFlowIntegrationTest {
     }
 
     @Test
+    @DisplayName("Edge Case: Waste Split on Metallic Threshold")
     void testScenarioWithEdgeCaseWasteSplit() {
         // Arrange
         Historic historic = createSampleHistoric(Location.B, 1250.0); // On the metallic threshold
@@ -116,6 +121,7 @@ class EndToEndFlowIntegrationTest {
     }
 
     @Test
+    @DisplayName("Optimal Center Selection")
     void testOptimalCenterSelection() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 2000.0);
@@ -133,6 +139,7 @@ class EndToEndFlowIntegrationTest {
 
     //Valid Scenario with Full Configuration
     @Test
+    @DisplayName("End-to-End: Valid Scenario")
     void testEndToEndValidScenario() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -157,6 +164,7 @@ class EndToEndFlowIntegrationTest {
 
     //No Viable Recycling Centers
     @Test
+    @DisplayName("End-to-End: No Viable Recycling Centers")
     void testEndToEndNoViableRecyclingCenters() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
@@ -173,6 +181,7 @@ class EndToEndFlowIntegrationTest {
 
     //Invalid Waste Distribution
     @Test
+    @DisplayName("Invalid Waste Distribution: Below Transport Capacity")
     void testInvalidWasteDistribution() {
         // Arrange
         Historic historic = new Historic(Location.A, 15); // Below transport capacity
@@ -189,6 +198,7 @@ class EndToEndFlowIntegrationTest {
 
     //Edge Case with Excessive Waste
     @Test
+    @DisplayName("Edge Case: Excessive Waste Handling")
     void testExcessiveWaste() {
         // Arrange
         Historic historic = new Historic(Location.C, 50000); // Large amount of waste
@@ -207,6 +217,7 @@ class EndToEndFlowIntegrationTest {
 
     //Fail Case with Invalid Location
     @Test
+    @DisplayName("Fail Case: Invalid Location Input")
     void testInvalidLocation() throws Exception {
         // Arrange
         ByteArrayInputStream in = new ByteArrayInputStream("D\nC".getBytes()); // Invalid, then valid input
@@ -226,6 +237,7 @@ class EndToEndFlowIntegrationTest {
 
     // Empty Recycling Centers
     @Test
+    @DisplayName("Empty Recycling Centers: No Centers Provided")
     void testEmptyRecyclingCenters() {
         // Arrange
         Historic historic = new Historic(Location.B, 1000);
@@ -241,6 +253,7 @@ class EndToEndFlowIntegrationTest {
 
     //Recycling Center Too Old to Be Optimal
     @Test
+    @DisplayName("Recycling Center: Too Old to Be Optimal")
     void testRecyclingCenterTooOld() {
         // Arrange
         Historic historic = new Historic(Location.A, 3000);
@@ -258,6 +271,7 @@ class EndToEndFlowIntegrationTest {
 
     //Fail Case with No Historic Site
     @Test
+    @DisplayName("Fail Case: No Historic Site")
     void testNoHistoricSite() {
         // Arrange
         ScenarioConfiguration configuration = new ScenarioConfiguration(null, new ArrayList<>());
