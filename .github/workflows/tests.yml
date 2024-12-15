@@ -18,8 +18,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: '22'
 
       - name: Run Maven Tests
-        run: mvn clean test -Dsurefire.version=3.0.0-M5 -Dtest=**/*Test -DfailIfNoTests=false
+        run: mvn clean test -Dsurefire.version=3.0.0-M5 -DfailIfNoTests=false
