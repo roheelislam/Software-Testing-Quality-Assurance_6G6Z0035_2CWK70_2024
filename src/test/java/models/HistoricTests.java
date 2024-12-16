@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,6 +9,7 @@ class HistoricTests {
 
     // Positive Test Cases
     @Test
+    @DisplayName("Constructor: Validate Initialization with Valid Inputs")
     void testConstructorWithValidInputs() {
         // Arrange
         Location location = Location.A;
@@ -25,6 +27,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Waste Split Below Threshold")
     void testConstructorWithWasteBelowThreshold() {
         // Arrange
         double initialWaste = 1000.0;
@@ -40,6 +43,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Set Remaining Waste: Validate Updates")
     void testSetRemainingWaste() {
         // Arrange
         Historic historic = new Historic(Location.C, 3000.0);
@@ -53,6 +57,7 @@ class HistoricTests {
 
     // Negative Test Cases
     @Test
+    @DisplayName("Constructor: Validate Negative Waste Throws Exception")
     void testConstructorWithNegativeWaste() {
         // Arrange
         Location location = Location.A;
@@ -64,6 +69,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Set Remaining Waste: Validate Negative Value Throws Exception")
     void testSetNegativeRemainingWaste() {
         // Arrange
         Historic historic = new Historic(Location.B, 2000.0);
@@ -74,6 +80,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Null Location Throws Exception")
     void testConstructorWithNullLocation() {
         // Arrange
         double initialWaste = 5000.0;
@@ -85,6 +92,7 @@ class HistoricTests {
 
     // Edge Case Test Cases
     @Test
+    @DisplayName("Constructor: Validate Zero Waste")
     void testConstructorWithZeroWaste() {
         // Arrange
         double initialWaste = 0.0;
@@ -100,6 +108,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Set Metallic Waste: Validate Updates")
     void testSetMetallicValue() {
         // Arrange
         Historic historic = new Historic(Location.C, 5000.0);
@@ -124,6 +133,7 @@ class HistoricTests {
     }
 
     @Test
+    @DisplayName("Mock Class: Validate Total Waste Calculation")
     void testMockHistoricTotalWasteCalculation() {
         // Arrange
         MockHistoric mockHistoric = new MockHistoric(Location.A, 3000.0);

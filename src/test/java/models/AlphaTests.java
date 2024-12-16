@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlphaTests {
 
     @Test
+    @DisplayName("Constructor Initialization: Validate Location and Years Active")
     void testConstructorInitialization() {
         // Arrange
         Location expectedLocation = Location.A;
@@ -23,6 +25,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Get Generation: Validate Alpha Generation")
     void testGetGeneration() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 3);
@@ -35,6 +38,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Get Rates: Validate Processing Rates")
     void testGetRates() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 10);
@@ -48,6 +52,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Location Consistency: Validate Location Across Calls")
     void testLocationConsistency() {
         // Arrange
         Location location = Location.B;
@@ -64,6 +69,7 @@ class AlphaTests {
     // Edge Cases and Additional Tests
 
     @Test
+    @DisplayName("Constructor: Validate Zero Years Active")
     void testConstructorWithZeroYearsActive() {
         // Arrange
         int yearsActive = 0;
@@ -76,6 +82,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Negative Years Active")
     void testConstructorWithNegativeYearsActive() {
         // Arrange
         int yearsActive = -5;
@@ -88,6 +95,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Rates Immutability: Validate Rates Cannot Be Modified")
     void testRatesImmutability() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.A, 5);
@@ -100,6 +108,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Handling of Large Years Active")
     void testLargeYearsActive() {
         // Arrange
         int yearsActive = Integer.MAX_VALUE;
@@ -112,6 +121,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Null Location Initialization")
     void testNullLocationInitialization() {
         // Arrange
         Location location = null;
@@ -124,6 +134,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Get Generation: Validate Consistency Across Calls")
     void testGetGenerationConsistency() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 8);
@@ -137,6 +148,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Multiple Instances: Validate Independence of Location")
     void testMultipleInstancesIndependence() {
         // Arrange
         Alpha alpha1 = new Alpha(Location.A, 5);
@@ -151,6 +163,7 @@ class AlphaTests {
     }
 
     @Test
+    @DisplayName("Rates Content: Validate Individual Rates")
     void testRatesContent() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 5);

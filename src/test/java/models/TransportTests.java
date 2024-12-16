@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,6 +12,7 @@ class TransportTests {
 
     // Positive Test Cases
     @Test
+    @DisplayName("Constructor: Validate Locations Using Reflection")
     void testConstructorWithValidLocationsUsingReflection() throws NoSuchFieldException, IllegalAccessException {
         // Arrange
         Location start = Location.A;
@@ -35,6 +37,7 @@ class TransportTests {
 
 
     @Test
+    @DisplayName("Set and Get Paper Waste: Validate Functionality")
     void testSetAndGetPaperWaste() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
@@ -48,6 +51,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Set and Get Plastic/Glass Waste: Validate Functionality")
     void testSetAndGetPlasticGlassWaste() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
@@ -61,6 +65,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Set and Get Metallic Waste: Validate Functionality")
     void testSetAndGetMetallicWaste() {
         // Arrange
         Transport transport = new Transport(Location.C, Location.A);
@@ -74,6 +79,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Calculate Total Waste: Validate Sum of All Waste Types")
     void testGetTotalWaste() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
@@ -89,6 +95,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Travel Time: Validate Between A and B")
     void testTravelTimeBetweenAAndB() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
@@ -101,6 +108,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Travel Time: Validate Within Same Location")
     void testTravelTimeWithinSameLocation() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.A);
@@ -114,6 +122,7 @@ class TransportTests {
 
     // Negative Test Cases
     @Test
+    @DisplayName("Constructor: Validate Null Start Location Throws Exception")
     void testConstructorWithNullStartLocation() {
         // Arrange
         Location start = null;
@@ -125,6 +134,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Null End Location Throws Exception")
     void testConstructorWithNullEndLocation() {
         // Arrange
         Location start = Location.A;
@@ -136,6 +146,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Set Paper Waste: Validate Negative Value Throws Exception")
     void testSetNegativePaperWaste() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
@@ -146,6 +157,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Set Plastic/Glass Waste: Validate Negative Value Throws Exception")
     void testSetNegativePlasticGlassWaste() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
@@ -156,6 +168,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Set Metallic Waste: Validate Negative Value Throws Exception")
     void testSetNegativeMetallicWaste() {
         // Arrange
         Transport transport = new Transport(Location.C, Location.A);
@@ -167,6 +180,7 @@ class TransportTests {
 
     // Edge Case Test Cases
     @Test
+    @DisplayName("Travel Time: Validate Between B and C")
     void testTravelTimeBetweenBAndC() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
@@ -179,6 +193,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Travel Time: Validate Between A and C")
     void testTravelTimeBetweenAAndC() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
@@ -191,6 +206,7 @@ class TransportTests {
     }
 
     @Test
+    @DisplayName("Mock Transport: Validate Overloaded Status")
     void testMockTransportOverloaded() {
         // Arrange
         MockTransport mockTransport = new MockTransport(Location.A, Location.B);

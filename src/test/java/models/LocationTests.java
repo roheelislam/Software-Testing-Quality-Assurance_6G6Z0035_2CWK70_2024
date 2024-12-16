@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,6 +9,7 @@ class LocationTest {
 
     // Positive Test Cases
     @Test
+    @DisplayName("Travel Time: From A to B")
     void testTravelTimeFromAToB() {
         // Arrange
         Location from = Location.A;
@@ -21,6 +23,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Travel Time: From B to C")
     void testTravelTimeFromBToC() {
         // Arrange
         Location from = Location.B;
@@ -34,6 +37,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Travel Time: From A to C")
     void testTravelTimeFromAToC() {
         // Arrange
         Location from = Location.A;
@@ -47,6 +51,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Travel Time: Within Same Location")
     void testTravelTimeWithinSameLocation() {
         // Arrange
         Location from = Location.C;
@@ -61,6 +66,7 @@ class LocationTest {
 
     // Negative Test Cases
     @Test
+    @DisplayName("Travel Time: From Null Location")
     void testTravelTimeFromNullLocation() {
         // Arrange
         Location from = null;
@@ -72,6 +78,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Travel Time: To Null Location")
     void testTravelTimeToNullLocation() {
         // Arrange
         Location from = Location.B;
@@ -84,6 +91,7 @@ class LocationTest {
 
     // Edge Case Test Cases
     @Test
+    @DisplayName("Bidirectional Travel Time: Equality Between A and B")
     void testBidirectionalTravelTimeEqualityAB() {
         // Arrange
         Location from = Location.A;
@@ -98,6 +106,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Bidirectional Travel Time: Equality Between A and C")
     void testBidirectionalTravelTimeEqualityAC() {
         // Arrange
         Location from = Location.A;
@@ -112,6 +121,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Bidirectional Travel Time: Equality Between B and C")
     void testBidirectionalTravelTimeEqualityBC() {
         // Arrange
         Location from = Location.B;
@@ -126,6 +136,7 @@ class LocationTest {
     }
 
     @Test
+    @DisplayName("Mock Location: Validate Round Trip Time")
     void testMockLocationRoundTripTime() {
         // Arrange
         MockLocation mockLocation = new MockLocation(Location.A);

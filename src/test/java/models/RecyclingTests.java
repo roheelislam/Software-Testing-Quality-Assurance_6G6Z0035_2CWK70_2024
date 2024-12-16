@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -50,6 +51,7 @@ class RecyclingTests {
 
     // Positive Test Cases
     @Test
+    @DisplayName("Constructor: Validate Years Active Initialization")
     void testValidYearsActive() {
         // Arrange
         Recycling recycling = new ConcreteRecycling(Location.A, 5, "Alpha", Arrays.asList(1.0, 1.5, 2.0));
@@ -62,6 +64,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Generation Initialization")
     void testValidGeneration() {
         // Arrange
         Recycling recycling = new ConcreteRecycling(Location.B, 8, "Beta", Arrays.asList(1.5, 1.5, 1.5));
@@ -74,6 +77,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Rates Initialization")
     void testValidRates() {
         // Arrange
         List<Double> expectedRates = Arrays.asList(1.0, 2.0, 3.0);
@@ -88,6 +92,7 @@ class RecyclingTests {
 
     // Negative Test Cases
     @Test
+    @DisplayName("Constructor: Validate Null Location Throws Exception")
     void testNullLocation() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -98,6 +103,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Negative Years Active Throws Exception")
     void testNegativeYearsActive() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -108,6 +114,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Null Generation Throws Exception")
     void testNullGeneration() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -118,6 +125,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Empty Generation Throws Exception")
     void testEmptyGeneration() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -128,6 +136,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Null Rates Throws Exception")
     void testNullRates() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -138,6 +147,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Empty Rates Throws Exception")
     void testEmptyRates() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -148,6 +158,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Negative Rate Value Throws Exception")
     void testNegativeRateValue() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -159,6 +170,7 @@ class RecyclingTests {
 
     // Edge Case Test Cases
     @Test
+    @DisplayName("Constructor: Validate Handling of Large Years Active")
     void testLargeYearsActive() {
         // Arrange
         int largeYearsActive = Integer.MAX_VALUE;
@@ -172,6 +184,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Special Characters in Generation")
     void testSpecialCharactersInGeneration() {
         // Arrange
         String specialGeneration = "@Gamma!";
@@ -185,6 +198,7 @@ class RecyclingTests {
     }
 
     @Test
+    @DisplayName("Constructor: Validate Zero Rates Are Accepted")
     void testZeroRates() {
         // Arrange
         List<Double> zeroRates = Arrays.asList(0.0, 0.0, 0.0);
