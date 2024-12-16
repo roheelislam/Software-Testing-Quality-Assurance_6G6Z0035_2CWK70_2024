@@ -23,10 +23,3 @@ jobs:
 
       - name: Run Maven Test Compile
         run: mvn test-compile
-
-#      - name: Run Maven Tests
-#        run: mvn clean test
-
-
-      - name: Run Maven Tests with Debug
-        run: mvn clean test -X -DfailIfNoTests=false
