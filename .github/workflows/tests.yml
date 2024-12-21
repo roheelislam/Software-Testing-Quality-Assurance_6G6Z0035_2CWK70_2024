@@ -22,4 +22,4 @@ jobs:
           java-version: '22'
 
       - name: Run Maven Test
-        run: mvn clean test -Dtest=*Tests
+        run: mvn clean test -DskipTests=false
