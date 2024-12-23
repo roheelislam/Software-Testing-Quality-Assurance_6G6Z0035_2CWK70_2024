@@ -13,7 +13,7 @@ class TransportTests {
     // Positive Test Cases
     @Test
     @DisplayName("Constructor: Validate Locations Using Reflection")
-    void testConstructorWithValidLocationsUsingReflection() throws NoSuchFieldException, IllegalAccessException {
+    void testConstructorWithValidLocationsUsingReflection_TC_001() throws NoSuchFieldException, IllegalAccessException {
         // Arrange
         Location start = Location.A;
         Location end = Location.B;
@@ -38,7 +38,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set and Get Paper Waste: Validate Functionality")
-    void testSetAndGetPaperWaste() {
+    void testSetAndGetPaperWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
 
@@ -52,7 +52,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set and Get Plastic/Glass Waste: Validate Functionality")
-    void testSetAndGetPlasticGlassWaste() {
+    void testSetAndGetPlasticGlassWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
 
@@ -66,7 +66,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set and Get Metallic Waste: Validate Functionality")
-    void testSetAndGetMetallicWaste() {
+    void testSetAndGetMetallicWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.C, Location.A);
 
@@ -80,7 +80,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Calculate Total Waste: Validate Sum of All Waste Types")
-    void testGetTotalWaste() {
+    void testGetTotalWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
 
@@ -96,7 +96,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Travel Time: Validate Between A and B")
-    void testTravelTimeBetweenAAndB() {
+    void testTravelTimeBetweenAAndB_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -109,7 +109,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Travel Time: Validate Within Same Location")
-    void testTravelTimeWithinSameLocation() {
+    void testTravelTimeWithinSameLocation_TC_002() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.A);
 
@@ -123,7 +123,7 @@ class TransportTests {
     // Negative Test Cases
     @Test
     @DisplayName("Constructor: Validate Null Start Location Throws Exception")
-    void testConstructorWithNullStartLocation() {
+    void testConstructorWithNullStartLocation_TC_001() {
         // Arrange
         Location start = null;
         Location end = Location.B;
@@ -135,7 +135,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Constructor: Validate Null End Location Throws Exception")
-    void testConstructorWithNullEndLocation() {
+    void testConstructorWithNullEndLocation_TC_001() {
         // Arrange
         Location start = Location.A;
         Location end = null;
@@ -147,7 +147,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set Paper Waste: Validate Negative Value Throws Exception")
-    void testSetNegativePaperWaste() {
+    void testSetNegativePaperWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -158,7 +158,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set Plastic/Glass Waste: Validate Negative Value Throws Exception")
-    void testSetNegativePlasticGlassWaste() {
+    void testSetNegativePlasticGlassWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
 
@@ -169,7 +169,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Set Metallic Waste: Validate Negative Value Throws Exception")
-    void testSetNegativeMetallicWaste() {
+    void testSetNegativeMetallicWaste_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.C, Location.A);
 
@@ -181,7 +181,7 @@ class TransportTests {
     // Edge Case Test Cases
     @Test
     @DisplayName("Travel Time: Validate Between B and C")
-    void testTravelTimeBetweenBAndC() {
+    void testTravelTimeBetweenBAndC_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.B, Location.C);
 
@@ -194,7 +194,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Travel Time: Validate Between A and C")
-    void testTravelTimeBetweenAAndC() {
+    void testTravelTimeBetweenAAndC_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
 
@@ -207,7 +207,7 @@ class TransportTests {
 
     @Test
     @DisplayName("Mock Transport: Validate Overloaded Status")
-    void testMockTransportOverloaded() {
+    void testMockTransportOverloaded_TC_001() {
         // Arrange
         MockTransport mockTransport = new MockTransport(Location.A, Location.B);
         mockTransport.setPaperWaste(500.0);

@@ -12,7 +12,7 @@ class BetaTests {
     // Positive Test Cases
     @Test
     @DisplayName("Constructor: Validate Initialization with Valid Input")
-    void testConstructorWithValidInput() {
+    void testConstructorWithValidInput_TC_001() {
         // Arrange
         Beta beta = new Beta(Location.A, 5);
 
@@ -31,7 +31,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Constructor: Validate Zero Years Active")
-    void testConstructorWithZeroYearsActive() {
+    void testConstructorWithZeroYearsActive_TC_002() {
         // Arrange
         Beta beta = new Beta(Location.B, 0);
 
@@ -44,7 +44,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Constructor: Validate Large Years Active")
-    void testConstructorWithLargeYearsActive() {
+    void testConstructorWithLargeYearsActive_TC_002() {
         // Arrange
         int largeYearsActive = Integer.MAX_VALUE;
         Beta beta = new Beta(Location.C, largeYearsActive);
@@ -58,7 +58,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Rates Immutability: Validate Rates List Cannot Be Modified")
-    void testRatesAreImmutable() {
+    void testRatesAreImmutable_TC_001() {
         // Arrange
         Beta beta = new Beta(Location.C, 10);
 
@@ -72,7 +72,7 @@ class BetaTests {
     // Negative Test Cases
     @Test
     @DisplayName("Constructor: Validate Null Location")
-    void testConstructorWithNullLocation() {
+    void testConstructorWithNullLocation_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(NullPointerException.class, () ->
                 new Beta(null, 5));
@@ -82,7 +82,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Constructor: Validate Negative Years Active")
-    void testConstructorWithNegativeYearsActive() {
+    void testConstructorWithNegativeYearsActive_TC_002() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new Beta(Location.A, -5));
@@ -93,7 +93,7 @@ class BetaTests {
     // Edge Case Test Cases
     @Test
     @DisplayName("Constructor: Validate Boundary Years Active")
-    void testConstructorWithBoundaryYearsActive() {
+    void testConstructorWithBoundaryYearsActive_TC_001() {
         // Arrange
         int boundaryYearsActive = 1;
         Beta beta = new Beta(Location.B, boundaryYearsActive);
@@ -107,7 +107,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Generation: Validate Fixed Value 'Beta'")
-    void testGenerationWithSpecialCharacters() {
+    void testGenerationWithSpecialCharacters_TC_001() {
         // Arrange
         Beta beta = new Beta(Location.C, 10);
 
@@ -120,7 +120,7 @@ class BetaTests {
 
     @Test
     @DisplayName("Constructor: Validate Extreme Years Active")
-    void testConstructorWithExtremeYearsActive() {
+    void testConstructorWithExtremeYearsActive_TC_001() {
         // Arrange
         Beta beta = new Beta(Location.A, Integer.MAX_VALUE);
 

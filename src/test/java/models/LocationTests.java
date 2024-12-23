@@ -10,7 +10,7 @@ class LocationTest {
     // Positive Test Cases
     @Test
     @DisplayName("Travel Time: From A to B")
-    void testTravelTimeFromAToB() {
+    void testTravelTimeFromAToB_TC_001() {
         // Arrange
         Location from = Location.A;
         Location to = Location.B;
@@ -24,7 +24,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Travel Time: From B to C")
-    void testTravelTimeFromBToC() {
+    void testTravelTimeFromBToC_TC_001() {
         // Arrange
         Location from = Location.B;
         Location to = Location.C;
@@ -38,7 +38,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Travel Time: From A to C")
-    void testTravelTimeFromAToC() {
+    void testTravelTimeFromAToC_TC_001() {
         // Arrange
         Location from = Location.A;
         Location to = Location.C;
@@ -52,7 +52,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Travel Time: Within Same Location")
-    void testTravelTimeWithinSameLocation() {
+    void testTravelTimeWithinSameLocation_TC_001() {
         // Arrange
         Location from = Location.C;
         Location to = Location.C;
@@ -67,7 +67,7 @@ class LocationTest {
     // Negative Test Cases
     @Test
     @DisplayName("Travel Time: From Null Location")
-    void testTravelTimeFromNullLocation() {
+    void testTravelTimeFromNullLocation_TC_001() {
         // Arrange
         Location from = null;
         Location to = Location.A;
@@ -79,7 +79,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Travel Time: To Null Location")
-    void testTravelTimeToNullLocation() {
+    void testTravelTimeToNullLocation_TC_001() {
         // Arrange
         Location from = Location.B;
         Location to = null;
@@ -92,7 +92,7 @@ class LocationTest {
     // Edge Case Test Cases
     @Test
     @DisplayName("Bidirectional Travel Time: Equality Between A and B")
-    void testBidirectionalTravelTimeEqualityAB() {
+    void testBidirectionalTravelTimeEqualityAB_TC_001() {
         // Arrange
         Location from = Location.A;
         Location to = Location.B;
@@ -107,7 +107,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Bidirectional Travel Time: Equality Between A and C")
-    void testBidirectionalTravelTimeEqualityAC() {
+    void testBidirectionalTravelTimeEqualityAC_TC_001() {
         // Arrange
         Location from = Location.A;
         Location to = Location.C;
@@ -122,7 +122,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Bidirectional Travel Time: Equality Between B and C")
-    void testBidirectionalTravelTimeEqualityBC() {
+    void testBidirectionalTravelTimeEqualityBC_TC_001() {
         // Arrange
         Location from = Location.B;
         Location to = Location.C;
@@ -137,7 +137,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Mock Location: Validate Round Trip Time")
-    void testMockLocationRoundTripTime() {
+    void testMockLocationRoundTripTime_TC_001() {
         // Arrange
         MockLocation mockLocation = new MockLocation(Location.A);
         Location destination = Location.B;

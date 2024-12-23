@@ -17,7 +17,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Default Constructor: Validate Initialization")
-    void testDefaultConstructor() {
+    void testDefaultConstructor_TC_001() {
         // Arrange & Act
         ScenarioConfiguration config = new ScenarioConfiguration();
 
@@ -29,7 +29,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Parameterized Constructor: Validate Initialization with Inputs")
-    void testParameterizedConstructor() {
+    void testParameterizedConstructor_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
         Recycling recycling = new Beta(Location.B, 10);
@@ -47,7 +47,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Set Historic Site: Validate Assignment")
-    void testSetHistoric() {
+    void testSetHistoric_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
         Historic historic = new Historic(Location.C, 2000);
@@ -61,7 +61,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Add Recycling Center: Single Item")
-    void testAddRecycling() {
+    void testAddRecycling_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
         Recycling recycling = new Alpha(Location.A, 5);
@@ -76,7 +76,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Add Multiple Recycling Centers: Validate List Updates")
-    void testAddMultipleRecyclingItems() {
+    void testAddMultipleRecyclingItems_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
         Recycling recycling1 = new Beta(Location.B, 7);
@@ -96,7 +96,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Add Null Recycling Center: Validate Behavior")
-    void testAddNullRecycling() {
+    void testAddNullRecycling_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
 
@@ -110,7 +110,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Set Null Historic Site: Validate Behavior")
-    void testSetNullHistoric() {
+    void testSetNullHistoric_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
 
@@ -123,7 +123,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Parameterized Constructor with Null Recycling List")
-    void testNullRecyclingListInParameterizedConstructor() {
+    void testNullRecyclingListInParameterizedConstructor_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
 
@@ -137,7 +137,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Modify Recycling List After Initialization")
-    void testRecyclingModificationAfterInitialization() {
+    void testRecyclingModificationAfterInitialization_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.B, 1000);
         List<Recycling> recyclingList = new ArrayList<>();
@@ -156,7 +156,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Recycling List with Empty Initialization")
-    void testRecyclingWithEmptyList() {
+    void testRecyclingWithEmptyList_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 500);
         ScenarioConfiguration config = new ScenarioConfiguration(historic, new ArrayList<>());
@@ -167,7 +167,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Add Recycling to Null Recycling List")
-    void testAddRecyclingToNullRecyclingList() {
+    void testAddRecyclingToNullRecyclingList_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
         ScenarioConfiguration config = new ScenarioConfiguration(historic, null);
@@ -180,7 +180,7 @@ class ScenarioConfigurationTests {
 
     @Test
     @DisplayName("Empty Constructor with Null Additions")
-    void testEmptyConstructorWithNullAdditions() {
+    void testEmptyConstructorWithNullAdditions_TC_001() {
         // Arrange
         ScenarioConfiguration config = new ScenarioConfiguration();
 

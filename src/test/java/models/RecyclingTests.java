@@ -52,7 +52,7 @@ class RecyclingTests {
     // Positive Test Cases
     @Test
     @DisplayName("Constructor: Validate Years Active Initialization")
-    void testValidYearsActive() {
+    void testValidYearsActive_TC_001() {
         // Arrange
         Recycling recycling = new ConcreteRecycling(Location.A, 5, "Alpha", Arrays.asList(1.0, 1.5, 2.0));
 
@@ -65,7 +65,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Generation Initialization")
-    void testValidGeneration() {
+    void testValidGeneration_TC_001() {
         // Arrange
         Recycling recycling = new ConcreteRecycling(Location.B, 8, "Beta", Arrays.asList(1.5, 1.5, 1.5));
 
@@ -78,7 +78,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Rates Initialization")
-    void testValidRates() {
+    void testValidRates_TC_001() {
         // Arrange
         List<Double> expectedRates = Arrays.asList(1.0, 2.0, 3.0);
         Recycling recycling = new ConcreteRecycling(Location.C, 15, "Gamma", expectedRates);
@@ -93,7 +93,7 @@ class RecyclingTests {
     // Negative Test Cases
     @Test
     @DisplayName("Constructor: Validate Null Location Throws Exception")
-    void testNullLocation() {
+    void testNullLocation_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(null, 5, "Alpha", Arrays.asList(1.0, 1.0, 1.0)));
@@ -104,7 +104,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Negative Years Active Throws Exception")
-    void testNegativeYearsActive() {
+    void testNegativeYearsActive_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.A, -1, "Alpha", Arrays.asList(1.0, 1.0, 1.0)));
@@ -115,7 +115,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Null Generation Throws Exception")
-    void testNullGeneration() {
+    void testNullGeneration_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.B, 5, null, Arrays.asList(1.0, 1.0, 1.0)));
@@ -126,7 +126,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Empty Generation Throws Exception")
-    void testEmptyGeneration() {
+    void testEmptyGeneration_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.C, 7, "", Arrays.asList(1.0, 1.5, 2.0)));
@@ -137,7 +137,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Null Rates Throws Exception")
-    void testNullRates() {
+    void testNullRates_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.B, 3, "Beta", null));
@@ -148,7 +148,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Empty Rates Throws Exception")
-    void testEmptyRates() {
+    void testEmptyRates_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.C, 9, "Gamma", Collections.emptyList()));
@@ -159,7 +159,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Negative Rate Value Throws Exception")
-    void testNegativeRateValue() {
+    void testNegativeRateValue_TC_001() {
         // Arrange, Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new ConcreteRecycling(Location.A, 10, "Alpha", Arrays.asList(-1.0, 1.5, 2.0)));
@@ -171,7 +171,7 @@ class RecyclingTests {
     // Edge Case Test Cases
     @Test
     @DisplayName("Constructor: Validate Handling of Large Years Active")
-    void testLargeYearsActive() {
+    void testLargeYearsActive_TC_004() {
         // Arrange
         int largeYearsActive = Integer.MAX_VALUE;
         Recycling recycling = new ConcreteRecycling(Location.C, largeYearsActive, "Gamma", Arrays.asList(1.0, 1.5, 2.0));
@@ -185,7 +185,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Special Characters in Generation")
-    void testSpecialCharactersInGeneration() {
+    void testSpecialCharactersInGeneration_TC_001() {
         // Arrange
         String specialGeneration = "@Gamma!";
         Recycling recycling = new ConcreteRecycling(Location.A, 7, specialGeneration, Arrays.asList(1.0, 1.5, 2.0));
@@ -199,7 +199,7 @@ class RecyclingTests {
 
     @Test
     @DisplayName("Constructor: Validate Zero Rates Are Accepted")
-    void testZeroRates() {
+    void  testZeroRates_TC_001() {
         // Arrange
         List<Double> zeroRates = Arrays.asList(0.0, 0.0, 0.0);
         Recycling recycling = new ConcreteRecycling(Location.B, 5, "Beta", zeroRates);

@@ -11,7 +11,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Constructor Initialization: Validate Location and Years Active")
-    void testConstructorInitialization() {
+    void testConstructorInitialization_TC_001() {
         // Arrange
         Location expectedLocation = Location.A;
         int expectedYearsActive = 5;
@@ -26,7 +26,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Get Generation: Validate Alpha Generation")
-    void testGetGeneration() {
+    void testGetGeneration_TC_001() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 3);
 
@@ -39,7 +39,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Get Rates: Validate Processing Rates")
-    void testGetRates() {
+    void testGetRates_TC_001() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 10);
 
@@ -53,7 +53,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Location Consistency: Validate Location Across Calls")
-    void testLocationConsistency() {
+    void testLocationConsistency_TC_001() {
         // Arrange
         Location location = Location.B;
         Alpha alphaRecycling = new Alpha(location, 8);
@@ -70,7 +70,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Constructor: Validate Zero Years Active")
-    void testConstructorWithZeroYearsActive() {
+    void testConstructorWithZeroYearsActive_TC_001() {
         // Arrange
         int yearsActive = 0;
 
@@ -83,7 +83,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Constructor: Validate Negative Years Active")
-    void testConstructorWithNegativeYearsActive() {
+    void testConstructorWithNegativeYearsActive_TC_001() {
         // Arrange
         int yearsActive = -5;
 
@@ -96,7 +96,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Rates Immutability: Validate Rates Cannot Be Modified")
-    void testRatesImmutability() {
+    void testRatesImmutability_TC_001() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.A, 5);
 
@@ -109,7 +109,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Constructor: Validate Handling of Large Years Active")
-    void testLargeYearsActive() {
+    void testLargeYearsActive_TC_001() {
         // Arrange
         int yearsActive = Integer.MAX_VALUE;
 
@@ -122,7 +122,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Constructor: Validate Null Location Initialization")
-    void testNullLocationInitialization() {
+    void testNullLocationInitialization_TC_001() {
         // Arrange
         Location location = null;
 
@@ -135,7 +135,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Get Generation: Validate Consistency Across Calls")
-    void testGetGenerationConsistency() {
+    void testGetGenerationConsistency_TC_001() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.B, 8);
 
@@ -149,7 +149,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Multiple Instances: Validate Independence of Location")
-    void testMultipleInstancesIndependence() {
+    void testMultipleInstancesIndependence_TC_001() {
         // Arrange
         Alpha alpha1 = new Alpha(Location.A, 5);
         Alpha alpha2 = new Alpha(Location.B, 10);
@@ -164,7 +164,7 @@ class AlphaTests {
 
     @Test
     @DisplayName("Rates Content: Validate Individual Rates")
-    void testRatesContent() {
+    void testRatesContent_TC_001() {
         // Arrange
         Alpha alphaRecycling = new Alpha(Location.C, 5);
 

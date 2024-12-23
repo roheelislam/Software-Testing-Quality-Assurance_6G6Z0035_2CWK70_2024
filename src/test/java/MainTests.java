@@ -40,7 +40,7 @@ class MainTests {
 
     @Test
     @DisplayName("Display Main Menu Options")
-    void testShowOptions() throws Exception {
+    void testShowOptions_TC_001() throws Exception {
         // Act
         invokePrivateMethod("showOptions");
 
@@ -53,7 +53,7 @@ class MainTests {
 
     @Test
     @DisplayName("Handle Invalid Menu Option")
-    void testShowOptionsAndInvalidChoice() {
+    void testShowOptionsAndInvalidChoice_TC_001() {
         // Simulate invalid choice for the main menu
         String input = "4\n3\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -67,7 +67,7 @@ class MainTests {
 
     @Test
     @DisplayName("Display About Information")
-    void testShowAbout() throws Exception {
+    void testShowAbout_TC_001() throws Exception {
         // Act
         invokePrivateMethod("showAbout");
 
@@ -79,7 +79,7 @@ class MainTests {
 
     @Test
     @DisplayName("Create Historic Site with User Input")
-    void testCreateHistoric() throws Exception {
+    void testCreateHistoric_TC_001() throws Exception {
         // Arrange
         provideInput("A\n1000\n");
 
@@ -94,7 +94,7 @@ class MainTests {
 
     @Test
     @DisplayName("Create Recycling Center with User Input")
-    void testCreateRecyclingWithSingleCentre() throws Exception {
+    void testCreateRecyclingWithSingleCentre_TC_001() throws Exception {
         // Arrange
         provideInput("A\n5\nAlpha\nn\n");
 
@@ -108,7 +108,7 @@ class MainTests {
 
     @Test
     @DisplayName("Collect Location with Valid Input")
-    void testCollectLocationWithValidInput() throws Exception {
+    void testCollectLocationWithValidInput_TC_001() throws Exception {
         // Arrange
         provideInput("B\n");
 
@@ -123,7 +123,7 @@ class MainTests {
 
     @Test
     @DisplayName("Handle Invalid Location Input")
-    void testInvalidLocationInput() throws Exception {
+    void testInvalidLocationInput_TC_001() throws Exception {
         // Arrange
         provideInput("X\nA\n");
 
@@ -136,7 +136,7 @@ class MainTests {
 
     @Test
     @DisplayName("Handle Invalid Recycling Generation Input")
-    void testInvalidGenerationInput() throws Exception {
+    void testInvalidGenerationInput_TC_001() throws Exception {
         // Arrange
         provideInput("InvalidGen\nBeta\n");
 
@@ -149,7 +149,7 @@ class MainTests {
 
     @Test
     @DisplayName("Run Scenario Without Historic Site")
-    void testRunScenarioWithoutHistoricSite() {
+    void testRunScenarioWithoutHistoricSite_TC_001() {
         // Arrange
         ScenarioConfiguration scenarioConfiguration = new ScenarioConfiguration(null, List.of());
 
@@ -168,7 +168,7 @@ class MainTests {
 
     @Test
     @DisplayName("Exit Application with User Input")
-    void testExitOption() {
+    void testExitOption_TC_001() {
         // Arrange
         provideInput("3\n");
 
@@ -182,7 +182,7 @@ class MainTests {
 
     @Test
     @DisplayName("Run Scenario with Valid Configuration")
-    void testRunScenarioWithValidConfiguration() throws Exception {
+    void testRunScenarioWithValidConfiguration_TC_001() throws Exception {
         // Arrange
         Historic historic = new Historic(Location.A, 1000);
         Recycling recycling = new Alpha(Location.B, 5);
@@ -200,7 +200,7 @@ class MainTests {
 
     @Test
     @DisplayName("Configure Scenario and Run with Valid Inputs")
-    void testConfigureScenarioAddHistoricAndRun() throws Exception {
+    void testConfigureScenarioAddHistoricAndRun_TC_001() throws Exception {
         // Simulate user input for creating a historic site and running a scenario
         String input = "1\nA\n1000\n3\n"; // Add Historic, Location A, Waste 1000, Exit
         System.setIn(new ByteArrayInputStream(input.getBytes()));

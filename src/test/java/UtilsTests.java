@@ -13,7 +13,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Viable Centres: With Metallic Waste")
-    void testFindViableCentresWithMetallicWaste() {
+    void testFindViableCentresWithMetallicWaste_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         historic.setMetallic(500);
@@ -31,7 +31,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Viable Centres: Without Metallic Waste")
-    void testFindViableCentresWithoutMetallicWaste() {
+    void testFindViableCentresWithoutMetallicWaste_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         historic.setMetallic(0);
@@ -51,7 +51,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Optimal Centre: Valid Centres")
-    void testFindOptimalCentre() {
+    void testFindOptimalCentre_TC_003() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
         List<Recycling> centres = List.of(
@@ -68,7 +68,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Calculate Travel Duration: Valid Centre")
-    void testCalculateTravelDuration() {
+    void testCalculateTravelDuration_TC_003() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling recycling = new Alpha(Location.B, 5);
@@ -82,7 +82,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Calculate Process Duration: Valid Centre")
-    void testCalculateProcessDuration() {
+    void testCalculateProcessDuration_TC_004() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling recycling = new Gamma(Location.B, 5);
@@ -98,7 +98,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Viable Centres: Empty List")
-    void testFindViableCentresWithEmptyList() {
+    void testFindViableCentresWithEmptyList_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
         List<Recycling> centres = new ArrayList<>();
@@ -112,7 +112,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Optimal Centre: Empty List")
-    void testFindOptimalCentreWithEmptyList() {
+    void testFindOptimalCentreWithEmptyList_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         List<Recycling> centres = new ArrayList<>();
@@ -126,7 +126,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Calculate Travel Duration: Insufficient Waste")
-    void testCalculateTravelDurationWithInsufficientWaste() {
+    void testCalculateTravelDurationWithInsufficientWaste_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 15); // Less than transport capacity
         Recycling recycling = new Alpha(Location.B, 5);
@@ -140,7 +140,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Calculate Process Duration: Zero Rates")
-    void testCalculateProcessDurationWithZeroRates() {
+    void testCalculateProcessDurationWithZeroRates_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling recycling = new Recycling(Location.B, 5) {
@@ -166,7 +166,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Viable Centres: Boundary Travel Time")
-    void testFindViableCentresWithBoundaryTravelTime() {
+    void testFindViableCentresWithBoundaryTravelTime_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 1500);
         List<Recycling> centres = List.of(
@@ -183,7 +183,7 @@ class UtilsTests {
 
     @Test
     @DisplayName("Find Highest Generations: Mixed Generations")
-    void testFindHighestGenerationsWithMixedGenerations() {
+    void testFindHighestGenerationsWithMixedGenerations_TC_001() {
         // Arrange
         List<Recycling> centres = List.of(
                 new Alpha(Location.A, 5),

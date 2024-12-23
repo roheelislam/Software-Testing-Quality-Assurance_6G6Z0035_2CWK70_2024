@@ -13,7 +13,7 @@ class GammaTests {
     // Positive Test Cases
     @Test
     @DisplayName("Constructor: Validate Initialization with Valid Input")
-    void testValidConstructor() {
+    void testValidConstructor_TC_001() {
         // Arrange
         Gamma gamma = new Gamma(Location.A, 5);
 
@@ -32,7 +32,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Constructor: Validate Zero Years Active")
-    void testZeroYearsActive() {
+    void testZeroYearsActive_TC_003() {
         // Arrange
         Gamma gamma = new Gamma(Location.B, 0);
 
@@ -45,7 +45,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Constructor: Validate Large Years Active")
-    void testLargeYearsActive() {
+    void testLargeYearsActive_TC_003() {
         // Arrange
         int largeYearsActive = Integer.MAX_VALUE;
         Gamma gamma = new Gamma(Location.C, largeYearsActive);
@@ -59,7 +59,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Rates Immutability: Validate Rates Cannot Be Modified")
-    void testRatesAreImmutable() {
+    void testRatesAreImmutable_TC_002() {
         // Arrange
         Gamma gamma = new Gamma(Location.A, 5);
 
@@ -74,7 +74,7 @@ class GammaTests {
     // Negative Test Cases
     @Test
     @DisplayName("Constructor: Validate Null Location")
-    void testConstructorWithNullLocation() {
+    void testConstructorWithNullLocation_TC_002() {
         // Arrange
         Gamma gamma = new Gamma(null, 5);
 
@@ -87,7 +87,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Constructor: Validate Negative Years Active")
-    void testConstructorWithNegativeYearsActive() {
+    void testConstructorWithNegativeYearsActive_TC_003() {
         // Arrange
         Gamma gamma = new Gamma(Location.A, -5);
 
@@ -101,7 +101,7 @@ class GammaTests {
     // Edge Case Test Cases
     @Test
     @DisplayName("Constructor: Validate Boundary Years Active")
-    void testConstructorWithBoundaryYearsActive() {
+    void testConstructorWithBoundaryYearsActive_TC_002() {
         // Arrange
         Gamma gamma = new Gamma(Location.C, 1);
 
@@ -114,7 +114,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Generation Consistency: Validate Fixed Generation Value")
-    void testGenerationConsistency() {
+    void testGenerationConsistency_TC_002() {
         // Arrange
         Gamma gamma = new Gamma(Location.B, 15);
 
@@ -127,7 +127,7 @@ class GammaTests {
 
     @Test
     @DisplayName("Rates Content: Validate Expected Rates Order")
-    void testRatesMatchExpectedOrder() {
+    void testRatesMatchExpectedOrder_TC_001() {
         // Arrange
         Gamma gamma = new Gamma(Location.A, 10);
 
