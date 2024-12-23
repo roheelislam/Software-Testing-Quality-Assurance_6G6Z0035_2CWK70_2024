@@ -16,7 +16,7 @@ class RecyclingandTransportIntegrationTests {
     //Positive Test Case: Validate Recycling Rates
     @Test
     @DisplayName("Validate Recycling Rates for Gamma Center")
-    void testRecyclingRates() {
+    void testRecyclingRates_TC_001() {
         // Arrange
         Recycling recycling = new Gamma(Location.B, 5);
 
@@ -31,7 +31,7 @@ class RecyclingandTransportIntegrationTests {
     //Negative Test Case: Invalid Recycling Center Generation
     @Test
     @DisplayName("Validate Alpha Recycling Center Does Not Have Beta Generation")
-    void testInvalidRecyclingGeneration() {
+    void testInvalidRecyclingGeneration_TC_002() {
         // Arrange
         Recycling recycling = new Alpha(Location.A, 5);
 

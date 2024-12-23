@@ -21,7 +21,7 @@ public class MiscIntegrationTests {
     //Verify Travel Time Between Locations
     @Test
     @DisplayName("Travel Time: Between Locations A and B")
-    void testTravelTimeBetweenLocations_AB() {
+    void testTravelTimeBetweenLocations_AB_TC_001() {
         //Arrange: Created a Transport object with Location.A as the start and Location.B as the end.
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -36,7 +36,7 @@ public class MiscIntegrationTests {
     //Validate Recycling Center Creation (Alpha)
     @Test
     @DisplayName("Recycling Center Creation: Alpha Generation Validation")
-    void testAlphaRecyclingCreation() {
+    void testAlphaRecyclingCreation_TC_001() {
         //Arrange: Create an Alpha recycling center at Location.A with 5 years of activity.
         Recycling alpha = new Alpha(Location.A, 5);
 
@@ -51,7 +51,7 @@ public class MiscIntegrationTests {
     //Calculate Waste Split in Historic Site
     @Test
     @DisplayName("Historic Site: Validate Waste Split")
-    void testHistoricWasteSplit() {
+    void testHistoricWasteSplit_TC_003() {
         //Arrange: Create a Historic site at Location.B with 1500 cubic meters of waste.
         Historic historic = new Historic(Location.B, 1500);
 
@@ -66,7 +66,7 @@ public class MiscIntegrationTests {
     //Calculate Travel Duration for Valid Configuration
     @Test
     @DisplayName("Travel Duration: Valid Configuration")
-    void testCalculateTravelDuration() {
+    void testCalculateTravelDuration_TC_003() {
         //Arrange: Create a Historic site at Location.A with 50 cubic meters of waste. Add a Beta recycling center at Location.B.
         Historic historic = new Historic(Location.A, 50);
 
@@ -84,7 +84,7 @@ public class MiscIntegrationTests {
     // Invalid Location Input
     @Test
     @DisplayName("Invalid Location Input: Exception Handling")
-    void testInvalidLocationInput() {
+    void testInvalidLocationInput_TC_002() {
         //Arrange: Create a Location object and try invalid input "D".
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             Location location = Location.valueOf("D");
@@ -98,7 +98,7 @@ public class MiscIntegrationTests {
     // Invalid Recycling Center Generation
     @Test
     @DisplayName("Invalid Recycling Center Generation: Exception Handling")
-    void testInvalidRecyclingGeneration() {
+    void testInvalidRecyclingGeneration_TC_001() {
         //Arrange & Act: Attempt to create a recycling center with generation "Zeta".
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Recycling(Location.C, 3) {
@@ -122,7 +122,7 @@ public class MiscIntegrationTests {
     //Transport Waste Capacity Exceeded Location A & C
     @Test
     @DisplayName("Transport Waste Exceeds Capacity")
-    void testTransportWasteExceedCapacity() {
+    void testTransportWasteExceedCapacity_TC_001() {
         //Arrange: Create a Transport object and set waste values exceeding the capacity.
         Transport transport = new Transport(Location.A, Location.C);
         transport.setPaperWaste(15);
@@ -142,7 +142,7 @@ public class MiscIntegrationTests {
     //Travel Time Within Same Location
     @Test
     @DisplayName("Travel Time: Within Same Location")
-    void testTravelTimeSameLocation() {
+    void testTravelTimeSameLocation_TC_001() {
         //Arrange: Create a Transport object where the start and end locations are the same.
         Transport transport = new Transport(Location.B, Location.B);
 
@@ -157,7 +157,7 @@ public class MiscIntegrationTests {
     //No Recycling Centers Found
     @Test
     @DisplayName("Recycling Centers: None Found")
-    void testNoRecyclingCenters() {
+    void testNoRecyclingCenters_TC_002() {
         //Arrange: Pass an empty list of candidate recycling centers to Utils.findViableCentres().
         Historic historic = new Historic(Location.A, 1000);
         List<Recycling> emptyList = new ArrayList<>();
@@ -173,7 +173,7 @@ public class MiscIntegrationTests {
     //Waste Below Transport Capacity
     @Test
     @DisplayName("Transport Capacity: Waste Below Threshold")
-    void testWasteBelowTransportCapacity() {
+    void testWasteBelowTransportCapacity_TC_001() {
         //Arrange: Create a Historic site with waste below transport capacity.
         Historic historic = new Historic(Location.C, 10); // Below transport capacity
         Recycling alpha = new Alpha(Location.B, 2);

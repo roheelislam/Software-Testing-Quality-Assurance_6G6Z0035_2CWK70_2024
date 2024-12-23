@@ -12,7 +12,7 @@ class TransportandLocationIntegrationTests {
     //Positive Test Case: Calculate Travel Time Between Locations
     @Test
     @DisplayName("Positive Case: Calculate Travel Time Between Locations A and B")
-    void testTransportTravelTimeBetweenLocations() {
+    void testTransportTravelTimeBetweenLocations_TC_002() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.B);
 
@@ -27,7 +27,7 @@ class TransportandLocationIntegrationTests {
     //Negative Test Case: Invalid Travel Time Calculation
     @Test
     @DisplayName("Negative Case: Travel Time Within the Same Location")
-    void testInvalidTravelTime() {
+    void testInvalidTravelTime_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.A);
 
@@ -42,7 +42,7 @@ class TransportandLocationIntegrationTests {
     //Edge Case: Transport Across Maximum Locations
     @Test
     @DisplayName("Edge Case: Maximum Travel Time Between Farthest Locations")
-    void testTransportMaxTravelTime() {
+    void testTransportMaxTravelTime_TC_001() {
         // Arrange
         Transport transport = new Transport(Location.A, Location.C);
 

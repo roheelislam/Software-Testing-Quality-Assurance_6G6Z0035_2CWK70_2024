@@ -35,7 +35,7 @@ class EndToEndFlowIntegrationTest {
 
     @Test
     @DisplayName("Scenario with Insufficient Waste")
-    void testScenarioWithInsufficientWaste() {
+    void testScenarioWithInsufficientWaste_TC_001() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 10.0); // Insufficient waste
         List<Recycling> recyclingCenters = createSampleRecyclingCenters();
@@ -62,7 +62,7 @@ class EndToEndFlowIntegrationTest {
 
     @Test
     @DisplayName("Scenario with No Metallic Waste")
-    void testScenarioWithNoMetallicWaste() {
+    void testScenarioWithNoMetallicWaste_TC_001() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 1200.0); // No metallic waste
         List<Recycling> recyclingCenters = createSampleRecyclingCenters();
@@ -83,7 +83,7 @@ class EndToEndFlowIntegrationTest {
 
     @Test
     @DisplayName("Scenario with Excessive Travel Time")
-    void testScenarioWithExcessiveTravelTime() {
+    void testScenarioWithExcessiveTravelTime_TC_001() {
         // Arrange
         Historic historic = createSampleHistoric(Location.C, 2000.0); // Far location
         List<Recycling> recyclingCenters = createSampleRecyclingCenters();
@@ -104,7 +104,7 @@ class EndToEndFlowIntegrationTest {
 
     @Test
     @DisplayName("Edge Case: Waste Split on Metallic Threshold")
-    void testScenarioWithEdgeCaseWasteSplit() {
+    void testScenarioWithEdgeCaseWasteSplit_TC_001() {
         // Arrange
         Historic historic = createSampleHistoric(Location.B, 1250.0); // On the metallic threshold
         createSampleRecyclingCenters();
@@ -122,7 +122,7 @@ class EndToEndFlowIntegrationTest {
 
     @Test
     @DisplayName("Optimal Center Selection")
-    void testOptimalCenterSelection() {
+    void testOptimalCenterSelection_TC_001() {
         // Arrange
         Historic historic = createSampleHistoric(Location.A, 2000.0);
         List<Recycling> recyclingCenters = createSampleRecyclingCenters();
@@ -140,7 +140,7 @@ class EndToEndFlowIntegrationTest {
     //Valid Scenario with Full Configuration
     @Test
     @DisplayName("End-to-End: Valid Scenario")
-    void testEndToEndValidScenario() {
+    void testEndToEndValidScenario_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling alphaCenter = new Alpha(Location.B, 10);
@@ -165,7 +165,7 @@ class EndToEndFlowIntegrationTest {
     //No Viable Recycling Centers
     @Test
     @DisplayName("End-to-End: No Viable Recycling Centers")
-    void testEndToEndNoViableRecyclingCenters() {
+    void testEndToEndNoViableRecyclingCenters_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 2000);
         Recycling gammaCenter = new Gamma(Location.C, 4); // Gamma center too far
@@ -182,7 +182,7 @@ class EndToEndFlowIntegrationTest {
     //Invalid Waste Distribution
     @Test
     @DisplayName("Invalid Waste Distribution: Below Transport Capacity")
-    void testInvalidWasteDistribution() {
+    void testInvalidWasteDistribution_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 15); // Below transport capacity
         Recycling alphaCenter = new Alpha(Location.B, 10);
@@ -199,7 +199,7 @@ class EndToEndFlowIntegrationTest {
     //Edge Case with Excessive Waste
     @Test
     @DisplayName("Edge Case: Excessive Waste Handling")
-    void testExcessiveWaste() {
+    void testExcessiveWaste_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.C, 50000); // Large amount of waste
         Recycling gammaCenter = new Gamma(Location.A, 2);
@@ -218,7 +218,7 @@ class EndToEndFlowIntegrationTest {
     //Fail Case with Invalid Location
     @Test
     @DisplayName("Fail Case: Invalid Location Input")
-    void testInvalidLocation() throws Exception {
+    void testInvalidLocation_TC_001() throws Exception {
         // Arrange
         ByteArrayInputStream in = new ByteArrayInputStream("D\nC".getBytes()); // Invalid, then valid input
         System.setIn(in);
@@ -238,7 +238,7 @@ class EndToEndFlowIntegrationTest {
     // Empty Recycling Centers
     @Test
     @DisplayName("Empty Recycling Centers: No Centers Provided")
-    void testEmptyRecyclingCenters() {
+    void testEmptyRecyclingCenters_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.B, 1000);
         List<Recycling> recyclingCenters = new ArrayList<>(); // No centers provided
@@ -254,7 +254,7 @@ class EndToEndFlowIntegrationTest {
     //Recycling Center Too Old to Be Optimal
     @Test
     @DisplayName("Recycling Center: Too Old to Be Optimal")
-    void testRecyclingCenterTooOld() {
+    void testRecyclingCenterTooOld_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 3000);
         Recycling betaCenter = new Beta(Location.B, 50); // Very old center
@@ -272,7 +272,7 @@ class EndToEndFlowIntegrationTest {
     //Fail Case with No Historic Site
     @Test
     @DisplayName("Fail Case: No Historic Site")
-    void testNoHistoricSite() {
+    void testNoHistoricSite_TC_001() {
         // Arrange
         ScenarioConfiguration configuration = new ScenarioConfiguration(null, new ArrayList<>());
 

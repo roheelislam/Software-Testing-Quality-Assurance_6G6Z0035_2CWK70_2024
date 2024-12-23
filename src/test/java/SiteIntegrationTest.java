@@ -13,7 +13,7 @@ class SiteIntegrationTest {
 
     @Test
     @DisplayName("Optimal Center Selection: Equal Distance Centers")
-    void testOptimalCenterSelectionWithEqualDistance() {
+    void testOptimalCenterSelectionWithEqualDistance_TC_002() {
         // Arrange
         Historic historic = new Historic(Location.A, 1000);
         Recycling betaCenterA = new Beta(Location.A, 3);
@@ -33,7 +33,7 @@ class SiteIntegrationTest {
 
     @Test
     @DisplayName("No Viable Centers: All Centers Beyond Travel Time Limit")
-    void testNoViableCenters() { // Test Case ID: testNoViableCenters
+    void testNoViableCenters_TC_002() { // Test Case ID: testNoViableCenters
         // Arrange
         Historic historic = new Historic(Location.A, 5000);
         Recycling center1 = new Alpha(Location.B, 10); // 4 hours away
@@ -49,7 +49,7 @@ class SiteIntegrationTest {
 
     @Test
     @DisplayName("All Centers in Same Zone: Validate Viability and Optimal Center")
-    void testAllCentersInSameZone() { // Test Case ID: testAllCentersInSameZone
+    void testAllCentersInSameZone_TC_001() { // Test Case ID: testAllCentersInSameZone
         // Arrange
         Historic historic = new Historic(Location.A, 5000);
         Recycling alphaCenter = new Alpha(Location.A, 10);
@@ -70,7 +70,7 @@ class SiteIntegrationTest {
 
     @Test
     @DisplayName("Identical Centers: Validate All Are Viable and Optimal Center Selection")
-    void testIdenticalCenters() { // Test Case ID: testIdenticalCenters
+    void testIdenticalCenters_TC_001() { // Test Case ID: testIdenticalCenters
         // Arrange
         Historic historic = new Historic(Location.A, 5000);
         Recycling gamma1 = new Gamma(Location.A, 5);

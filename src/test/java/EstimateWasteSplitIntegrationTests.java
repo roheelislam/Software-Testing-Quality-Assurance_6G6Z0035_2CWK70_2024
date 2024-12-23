@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EstimateWasteSplitIntegrationTests {
     @Test
     @DisplayName("Waste Split Below Threshold: Verify splits for less than 1250cm³ waste")
-    void testWasteSplitBelowThreshold() {
+    void testWasteSplitBelowThreshold_TC_001() {
         Historic historic = new Historic(Location.A, 1000); //less than 1250cm3
 
         double expectedPlasticGlass = 500.0; // 50%
@@ -24,7 +24,7 @@ class EstimateWasteSplitIntegrationTests {
     }
     @Test
     @DisplayName("Extreme Waste Volume: Validate behavior for 100,000cm³ waste")
-    void testExtremeWasteVolume() { // Test Case ID: testExtremeWasteVolume
+    void testExtremeWasteVolume_TC_001() { // Test Case ID: testExtremeWasteVolume
         Historic historic = new Historic(Location.A, 100000);
         Recycling alphaCenter = new Alpha(Location.A, 10);
         Recycling betaCenter = new Beta(Location.B, 8);
@@ -46,7 +46,7 @@ class EstimateWasteSplitIntegrationTests {
     }
     @Test
     @DisplayName("Empty Waste Configuration: Validate results for zero waste")
-    void testEmptyWasteConfiguration() { // Test Case ID: testEmptyWasteConfiguration
+    void testEmptyWasteConfiguration_TC_001() { // Test Case ID: testEmptyWasteConfiguration
         Historic historic = new Historic(Location.A, 0);
         Recycling alphaCenter = new Alpha(Location.A, 10);
         Recycling betaCenter = new Beta(Location.B, 8);

@@ -18,7 +18,7 @@ class HistoricandRecyclingIntegrationTests {
     //Positive Test Case: Waste Distribution Across Recycling Centers
     @Test
     @DisplayName("Positive Case: Validate Waste Distribution to Recycling Centers")
-    void testWasteDistributionToRecycling() {
+    void testWasteDistributionToRecycling_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 5000.0);
         new Gamma(Location.B, 10);
@@ -35,7 +35,7 @@ class HistoricandRecyclingIntegrationTests {
 
     @Test
     @DisplayName("Negative Case: Assign Non-Viable Recycling Center")
-    void testAssignNonViableCenter() {
+    void testAssignNonViableCenter_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 500.0); // No metallic waste
         List<Recycling> centers = List.of(

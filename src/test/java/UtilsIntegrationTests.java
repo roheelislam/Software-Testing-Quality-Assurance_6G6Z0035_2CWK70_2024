@@ -12,7 +12,7 @@ class UtilsIntegrationTests {
     // Positive Test Case: Valid generations
     @Test
     @DisplayName("Find Highest Generations: Valid Input")
-    void testFindHighestGenerations_ValidInput() {
+    void testFindHighestGenerations_ValidInput_TC_001() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
         candidateCentres.add(new Alpha(Location.A, 5)); // Alpha
@@ -30,7 +30,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Empty list
     @Test
     @DisplayName("Find Highest Generations: Empty List")
-    void testFindHighestGenerations_EmptyList() {
+    void testFindHighestGenerations_EmptyList_TC_002() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
 
@@ -44,7 +44,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Null input
     @Test
     @DisplayName("Find Highest Generations: Null Input")
-    void testFindHighestGenerations_NullInput() {
+    void testFindHighestGenerations_NullInput_TC_001() {
         // Arrange
         List<Recycling> candidateCentres = null;
 
@@ -59,7 +59,7 @@ class UtilsIntegrationTests {
     // Positive Test Case: Valid years active
     @Test
     @DisplayName("Find Least Years Active: Valid Input")
-    void testFindLeastYearsActive_ValidInput() {
+    void testFindLeastYearsActive_ValidInput_TC_001() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
         candidateCentres.add(new Alpha(Location.A, 5)); // 5 years active
@@ -77,7 +77,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Empty list
     @Test
     @DisplayName("Find Least Years Active: Empty List")
-    void testFindLeastYearsActive_EmptyList() {
+    void testFindLeastYearsActive_EmptyList_TC_003() {
         // Arrange
         List<Recycling> candidateCentres = new ArrayList<>();
 
@@ -91,7 +91,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Null input
     @Test
     @DisplayName("Find Least Years Active: Null Input")
-    void testFindLeastYearsActive_NullInput() {
+    void testFindLeastYearsActive_NullInput_TC_002() {
         // Arrange
         List<Recycling> candidateCentres = null;
 
@@ -106,7 +106,7 @@ class UtilsIntegrationTests {
     // Positive Test Case: Valid transport simulation
     @Test
     @DisplayName("Calculate Travel Duration: Valid Input")
-    void testCalculateTravelDuration_ValidInput() {
+    void testCalculateTravelDuration_ValidInput_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, 50.0); // Waste > TRANSPORT_CAPACITY
         Recycling gamma = new Gamma(Location.B, 5); // Gamma center
@@ -121,7 +121,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Waste below transport capacity
     @Test
     @DisplayName("Calculate Travel Duration: Insufficient Waste")
-    void testCalculateTravelDuration_InsufficientWaste() {
+    void testCalculateTravelDuration_InsufficientWaste_TC_002() {
         // Arrange
         Historic historic = new Historic(Location.A, 10.0); // Waste < TRANSPORT_CAPACITY
         Recycling beta = new Beta(Location.B, 5); // Beta center
@@ -136,7 +136,7 @@ class UtilsIntegrationTests {
     // Negative Test Case: Null inputs
     @Test
     @DisplayName("Calculate Travel Duration: Null Inputs")
-    void testCalculateTravelDuration_NullInputs() {
+    void testCalculateTravelDuration_NullInputs_TC_003() {
         // Arrange
         Historic historic = null;
         Recycling beta = null;

@@ -13,7 +13,7 @@ class RunModelIntegrationTest {
 
     @Test
     @DisplayName("Full Scenario Execution: Validate Waste Split and Optimal Center")
-    void testFullScenarioExecution() {
+    void testFullScenarioExecution_TC_001() {
         // Arrange
         Historic historic = new Historic(Location.A, INITIAL_WASTE);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);
@@ -51,7 +51,7 @@ class RunModelIntegrationTest {
 
     @Test
     @DisplayName("Calculate Travel and Process Duration with Optimal Center")
-    void testCalculateTravelAndProcessDurationWithOptimalCenter() { //Site
+    void testCalculateTravelAndProcessDurationWithOptimalCenter_TC_001() { //Site
         // Arrange
         Historic historic = new Historic(Location.A, 1000);
         Alpha alphaCentre = new Alpha(Location.A, INITIAL_WASTE);

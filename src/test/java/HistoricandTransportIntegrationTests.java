@@ -13,7 +13,7 @@ class HistoricandTransportIntegrationTests {
     //Positive Test Case: Waste Handling in Transport
     @Test
     @DisplayName("Positive Case: Validate Waste Handling in Transport")
-    void testTransportWasteManagement() {
+    void testTransportWasteManagement_TC_001() {
         // Arrange
         new Historic(Location.A, 100.0);
         Transport transport = new Transport(Location.A, Location.B);
@@ -30,7 +30,7 @@ class HistoricandTransportIntegrationTests {
     //Negative Test Case: Exceed Transport Capacity
     @Test
     @DisplayName("Negative Case: Exceed Transport Capacity")
-    void testExceedTransportCapacity() {
+    void testExceedTransportCapacity_TC_001() {
         // Arrange
         new Historic(Location.A, 100.0);
         Transport transport = new Transport(Location.A, Location.B);
